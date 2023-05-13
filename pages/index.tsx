@@ -2,10 +2,26 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-
+import { FaDocker, FaNodeJs, FaReact } from 'react-icons/fa'
+import { IoLogoJavascript } from 'react-icons/io'
+import { SiTypescript, SiMongodb, SiFfmpeg, SiAndroid, SiHtml5, SiCss3, SiKubernetes, SiNginx } from 'react-icons/si'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const skills = [
+    { icon: IoLogoJavascript, name: 'Javascript', },
+    { icon: FaReact, name: 'React', },
+    { icon: FaNodeJs, name: 'Nodejs', },
+    { icon: SiTypescript, name: 'Typescript', },
+    { icon: SiMongodb, name: 'Mongodb', },
+    { icon: FaDocker, name: 'Docker', },
+    { icon: SiKubernetes, name: 'Kubernetes', },
+    { icon: SiFfmpeg, name: 'FFMPEG', },
+    { icon: SiNginx, name: 'Nginx', },
+    { icon: SiAndroid, name: 'Android', },
+    { icon: SiHtml5, name: 'HTML5', },
+    { icon: SiCss3, name: 'CSS3', }
+  ]
   return (
     <>
       <Head>
@@ -19,31 +35,34 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Ravi Singh&nbsp;
+            &nbsp;
             <code className={styles.code}>Software Engineer 💻</code>
           </p>
-          {/* <div>
+          <div>
             <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+              href="/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
               <Image
-                src="/vercel.svg"
+                src="https://avatars.githubusercontent.com/u/33181670?v=4"
                 alt="Vercel Logo"
                 className={styles.vercelLogo}
                 width={100}
-                height={24}
+                height={100}
                 priority
               />
             </a>
-          </div> */}
+          </div>
         </div>
 
         <div className={styles.center}>
-          <h1>Coming Soon!</h1>
+          <h1>Ravi Singh</h1>
+          <div className={styles.icons}>
+            {skills.map(({ icon: Icon, name }) => <Icon key={name} />)}
+          </div>
         </div>
+        
 
         <div className={styles.grid}>
           {/* <a

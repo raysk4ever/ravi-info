@@ -71,9 +71,23 @@
   line-height: 1.5;
   max-width: 30ch;
 }
+.icons {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.icons svg {
+  font-size: 1.5rem;
+}
+
 
 .center {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -249,6 +263,9 @@
     z-index: 1;
   }
 }
+.vercelLogo {
+  border-radius: 50%;
+}
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
@@ -259,7 +276,7 @@
 
 @media (prefers-color-scheme: dark) {
   .vercelLogo {
-    filter: invert(1);
+    /* filter: invert(1); */
   }
 
   .logo,
