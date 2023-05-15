@@ -36,10 +36,10 @@ export default function Home() {
       <Head>
         <title>Ravi Singh | Software Engineer</title>
         <meta name="description" content="Ravi Singh | Software Engineer" />
-        <meta name="keywords" content="ravi, ravi kant singh, ravi singh, raysk4ever, rudrapur, ravi kant singh rudrapur, bareilly software engineer, teasit, kimblytech, ray" />
+        <meta name="keywords" content="ravi, ravi kant singh, ravi singh, raysk4ever, rudrapur, ravi kant singh rudrapur, bareilly software engineer, teasit, kimblytech, ray, React, Nodejs, Docker, Nextjs, Developer, Engineer, Typscript" />
         <meta name="author" content="Ravi Singh" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/cloud.png" />
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
