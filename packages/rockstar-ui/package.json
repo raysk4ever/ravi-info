@@ -1,0 +1,21 @@
+{
+  "name": "rockstar-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raysk4ever/ravi-info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raysk4ever/ravi-info/issues"
+  },
+  "homepage": "https://github.com/raysk4ever/ravi-info#readme"
+}
