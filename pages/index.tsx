@@ -5,23 +5,32 @@ import styles from '@/styles/Home.module.css'
 import { FaDocker, FaNodeJs, FaReact } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io'
 import { SiTypescript, SiMongodb, SiFfmpeg, SiAndroid, SiHtml5, SiCss3, SiKubernetes, SiNginx } from 'react-icons/si'
+import { useCallback, useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
+const skills = [
+  { icon: IoLogoJavascript, name: 'Javascript', color: '#EFD81A' },
+  { icon: FaReact, name: 'React', color: '#5ED2F3' },
+  { icon: FaNodeJs, name: 'Nodejs', color: '#77B55C' },
+  { icon: SiTypescript, name: 'Typescript', color: '#2F73BF' },
+  { icon: SiMongodb, name: 'Mongodb', color: '#51A649' },
+  { icon: FaDocker, name: 'Docker', color: '#2491E5' },
+  { icon: SiKubernetes, name: 'Kubernetes', color: '#3069DD' },
+  { icon: SiFfmpeg, name: 'FFMPEG', color: '#008014' },
+  { icon: SiNginx, name: 'Nginx', color: '#039137' },
+  { icon: SiAndroid, name: 'Android', color: '#31DE83' },
+  { icon: SiHtml5, name: 'HTML5', color: '#E96328' },
+  { icon: SiCss3, name: 'CSS3', color: '#2662E9' }
+]
+
 export default function Home() {
-  const skills = [
-    { icon: IoLogoJavascript, name: 'Javascript', },
-    { icon: FaReact, name: 'React', },
-    { icon: FaNodeJs, name: 'Nodejs', },
-    { icon: SiTypescript, name: 'Typescript', },
-    { icon: SiMongodb, name: 'Mongodb', },
-    { icon: FaDocker, name: 'Docker', },
-    { icon: SiKubernetes, name: 'Kubernetes', },
-    { icon: SiFfmpeg, name: 'FFMPEG', },
-    { icon: SiNginx, name: 'Nginx', },
-    { icon: SiAndroid, name: 'Android', },
-    { icon: SiHtml5, name: 'HTML5', },
-    { icon: SiCss3, name: 'CSS3', }
-  ]
+  const [iconName, setIconName] = useState('')
+  const handleOnMouseEnter = useCallback((name: string) => () => {
+    setIconName(name)
+  }, [])
+  const handleOnMouseLeave = useCallback(() => {
+    setIconName('')
+  }, [])
   return (
     <>
       <Head>
@@ -59,10 +68,13 @@ export default function Home() {
         <div className={styles.center}>
           <h1>Ravi Singh</h1>
           <div className={styles.icons}>
-            {skills.map(({ icon: Icon, name }) => <Icon key={name} />)}
+            {skills.map(({ icon: Icon, name, color = '#000' }) => <Icon onMouseEnter={handleOnMouseEnter(name)} onMouseLeave={handleOnMouseLeave} key={name} color={color} />)}
+          </div>
+          <div className={styles.iconName}>
+            {iconName}
           </div>
         </div>
-        
+
 
         <div className={styles.grid}>
           {/* <a
