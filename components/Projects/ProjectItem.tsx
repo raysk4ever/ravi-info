@@ -9,7 +9,7 @@ interface ProjectItemProps {
   demo?: string,
   tech: IconType[]
   isInternalTool?: boolean
-  desc: string
+  desc?: string
 }
 const ProjectItem = ({ name, image, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
   const handleOnDemoClick = useCallback((url: string | undefined) => () => {
@@ -66,7 +66,7 @@ const IconList = styled.div`
 const DemoBtn = styled.div`
   text-align: center;
   padding: 5px 0px;
-  background-color: ${p => p.isInternalTool ? '#5f06736': '#5f0673bd'};
+  background-color: ${p => p.isInternalTool ? '#5f06736': '#000000'};
   border-radius: 10px;
   cursor: pointer;
   margin: 10px;

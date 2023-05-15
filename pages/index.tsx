@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import LandingPage from '@/components/Landing'
 import Projects from '@/components/Projects'
+import Links from '@/components/Links'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/cloud.png" />
       </Head>
       <main className={styles.main}>
+        <Links />
         <LandingPage />
         <Projects />
       </main>
