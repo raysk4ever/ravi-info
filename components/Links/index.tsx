@@ -1,6 +1,6 @@
 import React from 'react'
-import { FaGithub, FaStackOverflow } from 'react-icons/fa'
-import { SiLinkedin } from 'react-icons/si'
+import { FaGithub, FaMedium, FaMediumM, FaStackOverflow } from 'react-icons/fa'
+import { SiLinkedin, SiMedium } from 'react-icons/si'
 import { styled } from 'styled-components'
 
 const Links = () => {
@@ -12,6 +12,7 @@ const Links = () => {
       <FaGithub onClick={() => open('https://github.com/raysk4ever/')} />
       <FaStackOverflow color='#EC761E' onClick={() => open('https://stackoverflow.com/users/11216915/ravi-singh')} />
       <SiLinkedin color='#0177B5' onClick={() => open('https://www.linkedin.com/in/ravi-raysk/')} />
+      <MediumIcon color='#000' onClick={() => open('https://medium.com/@kissmi')} />
     </LinksContainer>
   )
 }
@@ -33,4 +34,7 @@ const LinksContainer = styled.div`
     cursor: pointer;
     font-size: 30px;
   }
+`
+const MediumIcon = styled(FaMedium)`
+  background-color: white;
 `
