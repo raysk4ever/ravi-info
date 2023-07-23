@@ -1,4 +1,3 @@
-import { Image } from '@/styled'
 import React, { useCallback } from 'react'
 import { IconType } from 'react-icons/lib'
 import { styled } from 'styled-components'
@@ -38,7 +37,7 @@ export default ProjectItem
 const ItemWrapper = styled.div`
   /* background-color: #009688; */
   background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border: 3px dotted rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
@@ -48,7 +47,12 @@ const ItemWrapper = styled.div`
   color: rgb(var(--foreground-rgb));
   width: 250px;
   margin: 10px 0px;
+  transition: all 0.1s 0s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   cursor: pointer;
+  &:hover {
+    border: 3px solid rgba(var(--callout-border-rgb), 0.6);
+    font-weight: bold;
+  }
   img {
     height: 60%;
   }

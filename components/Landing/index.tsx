@@ -45,7 +45,7 @@ const LandingPage = () => {
           </p>
           <div>
             <a
-              href="/"
+              href="https://github.com/raysk4ever"
               target="_blank"
               rel="noopener noreferrer"
             >
