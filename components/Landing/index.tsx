@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { FaDocker, FaNodeJs, FaReact } from 'react-icons/fa'
+import { FaAws, FaDocker, FaNodeJs, FaReact } from 'react-icons/fa'
 import { SiFirebase, SiTypescript, SiMongodb, SiFfmpeg, SiAndroid, SiHtml5, SiCss3, SiKubernetes, SiNginx, SiNextdotjs, SiJavascript, SiMysql } from 'react-icons/si'
 import { TbBrandThreejs, TbBrandSocketIo } from 'react-icons/tb'
 import { useCallback, useState } from 'react'
@@ -25,7 +25,7 @@ const skills = [
   { icon: TbBrandThreejs, name: 'Three.js', color: '#000000' },
   { icon: SiFirebase, name: 'Firebase', color: '#F57C00' },
   { icon: TbBrandSocketIo, name: 'Socket.io', color: '#000000' },
-  
+  { icon: FaAws, name: 'AWS', color: '#ff9900' },
 ]
 
 const LandingPage = () => {
