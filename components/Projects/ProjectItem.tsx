@@ -63,7 +63,7 @@ const IconList = styled.div`
   gap: 1rem;
 `
 
-const DemoBtn = styled.div`
+const DemoBtn = styled.div<{ isInternalTool: Boolean | undefined }>`
   text-align: center;
   padding: 5px 0px;
   background-color: ${p => p.isInternalTool ? '#5f06736': '#000000'};

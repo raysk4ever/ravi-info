@@ -18,7 +18,7 @@ export default function Home() {
       <main className={styles.main}>
         <Links />
         <LandingPage />
-        {/* <Projects /> */}
+        <Projects />
       </main>
     </>
   )

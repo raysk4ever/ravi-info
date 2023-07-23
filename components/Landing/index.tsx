@@ -58,7 +58,7 @@ const LandingPage = () => {
         <div className={styles.center}>
           <h1>Ravi Singh</h1>
           <div className={styles.icons}>
-            {skills.map(({ icon: Icon, name, color = '#000' }) => <Icon onMouseEnter={handleOnMouseEnter(name)} onMouseLeave={handleOnMouseLeave} key={name} color={color} />)}
+            {skills.map(({ icon: Icon, name, color = '#000' }) => <Icon onMouseEnter={handleOnMouseEnter(name)} onMouseLeave={handleOnMouseLeave} key={name} color={color} className={`${name.toLowerCase()}-icon`} />)}
           </div>
           <div className={styles.iconName}>
             {iconName}

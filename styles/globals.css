@@ -105,4 +105,7 @@ a {
   html {
     color-scheme: dark;
   }
+  .next\.js-icon {
+    color: #fff !important
+  }
 }
