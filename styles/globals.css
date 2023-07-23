@@ -105,7 +105,7 @@ a {
   html {
     color-scheme: dark;
   }
-  .next\.js-icon {
+  .socket\.io-icon, .three\.js-icon, .next\.js-icon {
     color: #fff !important
   }
 }

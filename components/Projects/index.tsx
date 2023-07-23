@@ -2,6 +2,7 @@ import React from 'react'
 import ProjectItem from './ProjectItem'
 import { styled } from 'styled-components'
 import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript } from 'react-icons/si'
+import { TbBrandSocketIo } from 'react-icons/tb'
 
 const projects = [
   {
@@ -36,6 +37,17 @@ const projects = [
   {
     name: 'Swati CMS - SIDBI',
     image: '/sidbi.jpeg',
+    isInternalTool: true,
+    tech: [SiNodedotjs, SiReact]
+  },
+  {
+    name: 'Hio - The Chat App',
+    image: '/sidbi.jpeg',
+    isInternalTool: true,
+    tech: [SiNodedotjs, SiReact, SiNextdotjs, TbBrandSocketIo]
+  },
+  {
+    name: 'Resume Builder',
     isInternalTool: true,
     tech: [SiNodedotjs, SiReact]
   }
