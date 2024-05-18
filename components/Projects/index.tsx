@@ -6,6 +6,15 @@ import { TbBrandSocketIo } from 'react-icons/tb'
 
 const projects = [
   {
+    name: 'Base64 Panda',
+    image: '',
+    demo: 'https://base64.socialamigo.in',
+    tech: [
+      SiNextdotjs,
+      SiTypescript
+    ],
+  },
+  {
     name: 'Teasit PWA Application',
     image: '/teasit.avif',
     demo: 'https://teasit.com',

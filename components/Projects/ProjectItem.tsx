@@ -11,14 +11,14 @@ interface ProjectItemProps {
   desc?: string
 }
 const ProjectItem = ({ name, image, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
-  const handleOnDemoClick = useCallback((url: string | undefined) => () => {
-    if (!url) {
+  const handleOnDemoClick = (url: string | undefined) => {
+    if (!demo) {
       return
     }
-    window.open(url, '_blank')
-  }, [])
+    window.open(demo, '_blank')
+  }
   return (
-    <ItemWrapper>
+    <ItemWrapper onClick={handleOnDemoClick}>
       <p>{name}</p>
       {/* <Image src={image} alt={`${name}-logo`} /> */}
       <ContentWrapper>
