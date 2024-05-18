@@ -11,7 +11,7 @@ interface ProjectItemProps {
   desc?: string
 }
 const ProjectItem = ({ name, image, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
-  const handleOnDemoClick = (url: string | undefined) => {
+  const handleOnDemoClick: any = (url: string | undefined) => {
     if (!demo) {
       return
     }
