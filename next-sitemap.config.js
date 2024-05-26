@@ -10,6 +10,7 @@ const config = {
   additionalPaths: async (config) => {
     return [
       await config.transform(config, 'https://budget.socialamigo.in'),
+      await config.transform(config, 'https://base64.socialamigo.in'),
       // Add more static pages here as needed
     ]
   },
