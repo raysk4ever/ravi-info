@@ -28,7 +28,7 @@ const PP = () => {
         We may update our privacy policy from time to time. Any changes will be posted on this page.
 
         <p>8. Contact Us</p>
-        If you have any questions or concerns about this privacy policy, please contact us at [Your Contact Information].
+        If you have any questions or concerns about this privacy policy, please contact us at raysk7161@gmail.com.
 
         By using our app, you agree to the terms outlined in this privacy policy.
     </div>
