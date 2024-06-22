@@ -19,9 +19,9 @@ const PP = () => {
         We do not share, sell, or transmit any of your personal information to third parties. All data remains on your local device.
 
         <p>5. Data Security</p>
-        We rely on your device's security measures to protect your data. We recommend keeping your device secure to prevent unauthorized access.
+        We rely on your device&apos;s security measures to protect your data. We recommend keeping your device secure to prevent unauthorized access.
 
-        <p>6. Children's Privacy</p>
+        <p>6. Children&apos;s Privacy</p>
         Our app is not intended for children under 13. We do not knowingly collect or store data from children under 13.
 
        <p> 7. Changes to This Privacy Policy</p>
