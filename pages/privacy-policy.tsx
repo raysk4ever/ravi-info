@@ -1,36 +1,30 @@
 const PP = () => {
   return ( 
     <div>
-      <h1>
-        Privacy Policy
-      </h1>
-        Effective Date: 23 June 2024
+      <h1>Privacy Policy for Emergency Call INDIA</h1>
+    <p>Effective Date: July 4, 2024</p>
+    
+    <h2>1. Introduction</h2>
+    <p>Welcome to Emergency Call INDIA (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). We respect your privacy and are committed to protecting the personal information you may provide us through our application (&quot;App&quot;). This Privacy Policy explains our practices regarding the collection, use, and disclosure of your information when you use our App.</p>
+    
+    <h2>2. Information We Collect</h2>
+    <h3>Personal Data:</h3>
+    <p>We do not collect any personal data through the Emergency Call INDIA app.</p>
+    <h3>Non-Personal Data:</h3>
+    <p>The app does not collect any non-personal data.</p>
+    
+    <h2>3. Use of Your Information</h2>
+    <p>Since we do not collect any personal or non-personal data, there is no information to use for any purpose.</p>
+    
+    <h2>4. Data Security</h2>
+    <p>We do not collect, store, or process any user data. Therefore, we do not have any specific data security measures in place for user data. The app operates entirely on your device without any data being transmitted to us or third parties.</p>
+    
+    <h2>5. Children&apos;s Privacy</h2>
+    <p>Our app does not knowingly collect any personal information from children under the age of 13. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information.</p>
+    
+    <h2>6. Changes to This Privacy Policy</h2>
+    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
 
-        <p>1. Introduction</p>
-        We respect your privacy and are committed to protecting your personal information. This privacy policy explains how we handle your data when you use our app.
-
-        <p>2. Information We Collect</p>
-        We do not collect or store any personal information on our servers. All data, including contact information, is stored locally on your device.
-
-        <p>3. How We Use Your Information</p>
-
-        Quick Calls: To enable you to make quick calls to your favorite contacts stored on your device.
-        <p>4. Data Sharing and Disclosure</p>
-        We do not share, sell, or transmit any of your personal information to third parties. All data remains on your local device.
-
-        <p>5. Data Security</p>
-        We rely on your device&apos;s security measures to protect your data. We recommend keeping your device secure to prevent unauthorized access.
-
-        <p>6. Children&apos;s Privacy</p>
-        Our app is not intended for children under 13. We do not knowingly collect or store data from children under 13.
-
-       <p> 7. Changes to This Privacy Policy</p>
-        We may update our privacy policy from time to time. Any changes will be posted on this page.
-
-        <p>8. Contact Us</p>
-        If you have any questions or concerns about this privacy policy, please contact us at raysk7161@gmail.com.
-
-        By using our app, you agree to the terms outlined in this privacy policy.
     </div>
   );
 }
