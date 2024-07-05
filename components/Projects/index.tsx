@@ -76,6 +76,7 @@ const projects = [
   {
     name: 'Resume Builder',
     isInternalTool: true,
+    demo: 'https://easy-resume-builder-web.web.app',
     tech: [SiNodedotjs, SiReact]
   }
 ]
