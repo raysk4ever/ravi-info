@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap"
-
   },
   "dependencies": {
     "@types/node": "18.15.11",

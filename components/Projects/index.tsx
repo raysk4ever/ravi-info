@@ -2,9 +2,27 @@ import React from 'react'
 import ProjectItem from './ProjectItem'
 import { styled } from 'styled-components'
 import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript } from 'react-icons/si'
-import { TbBrandSocketIo } from 'react-icons/tb'
+import { TbBrandReactNative, TbBrandSocketIo } from 'react-icons/tb'
 
 const projects = [
+  {
+    name: 'Quick Dial',
+    image: '',
+    demo: 'https://play.google.com/store/apps/details?id=com.quickdialapp&hl=en_US',
+    tech: [
+      TbBrandReactNative,
+      SiTypescript
+    ],
+  },
+  {
+    name: 'Emergency Call INDIA',
+    image: '',
+    demo: 'https://play.google.com/store/apps/details?id=com.shail.raysk.emergencycall&hl=en_US',
+    tech: [
+      TbBrandReactNative,
+      SiTypescript
+    ],
+  },
   {
     name: 'Base64 Panda',
     image: '',
