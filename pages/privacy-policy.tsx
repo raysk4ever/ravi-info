@@ -5,7 +5,7 @@ const PP = () => {
     <p><strong>Effective Date:</strong> July 4, 2024</p>
 
     <h2>1. Introduction</h2>
-    <p>Welcome to Emergency Call INDIA ("we," "our," "us"). We respect your privacy and are committed to protecting any personal information you may provide through our application ("App"). This Privacy Policy outlines our practices regarding the collection, use, and disclosure of your information when you use our App.</p>
+    <p>Welcome to Emergency Call INDIA (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). We respect your privacy and are committed to protecting any personal information you may provide through our application (&quot;App&quot;). This Privacy Policy outlines our practices regarding the collection, use, and disclosure of your information when you use our App.</p>
 
     <h2>2. Information We Collect</h2>
     <h3>Personal Data:</h3>
@@ -21,7 +21,7 @@ const PP = () => {
     <p><strong>No Data Collected:</strong> We do not collect, store, or process any user data.</p>
     <p><strong>Security Measures:</strong> As there is no data transmission to us or third parties, specific data security measures are not necessary. The app operates entirely on your device.</p>
 
-    <h2>5. Children's Privacy</h2>
+    <h2>5. Children&apos;s Privacy</h2>
     <p><strong>No Collection from Children:</strong> Our app does not knowingly collect any personal information from children under the age of 13.</p>
     <p><strong>Actions Upon Awareness:</strong> If we become aware that a child under 13 has provided us with personal information, we will take immediate steps to delete such information.</p>
 
