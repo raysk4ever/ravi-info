@@ -12,6 +12,9 @@ const config = {
       await config.transform(config, 'https://budget.socialamigo.in'),
       await config.transform(config, 'https://base64.socialamigo.in'),
       await config.transform(config, 'https://xpense.socialamigo.in'),
+      await config.transform(config, 'https://play.google.com/store/apps/details?id=com.quickdialapp&hl=en_US'),
+      await config.transform(config, 'https://play.google.com/store/apps/details?id=com.shail.raysk.emergencycall&hl=en_US'),
+      await config.transform(config, 'https://easy-resume-builder-web.web.app'),
       // Add more static pages here as needed
     ]
   },

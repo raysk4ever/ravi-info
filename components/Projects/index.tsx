@@ -2,7 +2,7 @@ import React from 'react'
 import ProjectItem from './ProjectItem'
 import { styled } from 'styled-components'
 import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript, SiVite } from 'react-icons/si'
-import { TbBrandSocketIo } from 'react-icons/tb'
+import { TbBrandReactNative, TbBrandSocketIo } from 'react-icons/tb'
 
 const projects = [
   {
@@ -11,7 +11,24 @@ const projects = [
     demo: 'https://xpense.socialamigo.in',
     tech: [
       SiVite,
-      SiReact,
+      SiReact
+    ]
+  },
+  {
+    name: 'Quick Dial',
+    image: '',
+    demo: 'https://play.google.com/store/apps/details?id=com.quickdialapp&hl=en_US',
+    tech: [
+      TbBrandReactNative,
+      SiTypescript
+    ],
+  },
+  {
+    name: 'Emergency Call INDIA',
+    image: '',
+    demo: 'https://play.google.com/store/apps/details?id=com.shail.raysk.emergencycall&hl=en_US',
+    tech: [
+      TbBrandReactNative,
       SiTypescript
     ],
   },
@@ -68,6 +85,7 @@ const projects = [
   {
     name: 'Resume Builder',
     isInternalTool: true,
+    demo: 'https://easy-resume-builder-web.web.app',
     tech: [SiNodedotjs, SiReact]
   }
 ]
