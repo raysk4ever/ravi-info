@@ -1,10 +1,20 @@
 import React from 'react'
 import ProjectItem from './ProjectItem'
 import { styled } from 'styled-components'
-import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript } from 'react-icons/si'
+import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript, SiVite } from 'react-icons/si'
 import { TbBrandSocketIo } from 'react-icons/tb'
 
 const projects = [
+  {
+    name: 'Xpense Wala',
+    image: 'https://xpense.socialamigo.in/logo.svg',
+    demo: 'https://xpense.socialamigo.in',
+    tech: [
+      SiVite,
+      SiReact,
+      SiTypescript
+    ],
+  },
   {
     name: 'Base64 Panda',
     image: '',
