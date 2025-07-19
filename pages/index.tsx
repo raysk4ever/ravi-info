@@ -20,6 +20,9 @@ export default function Home() {
         <LandingPage />
         <Projects />
       </main>
+      <footer className={styles.footer}>
+        <p>© {new Date().getFullYear()} Ravi Singh. All rights reserved.</p>
+        </footer>
     </>
   )
 }

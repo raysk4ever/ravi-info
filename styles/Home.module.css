@@ -37,6 +37,7 @@
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
+  margin-right: .5rem;
 }
 
 .grid {
@@ -160,6 +161,17 @@
   width: 200%;
   height: 200%;
   background: var(--tile-border);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(var(--footer-bg-rgb), 0.8);
+  color: rgba(var(--footer-text-rgb), 0.8);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(var(--footer-border-rgb), 0.2);
 }
 
 /* Inner Square */

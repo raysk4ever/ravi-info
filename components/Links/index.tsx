@@ -12,7 +12,7 @@ const Links = () => {
     <LinksContainer>
       <FaGithub onClick={() => open('https://github.com/raysk4ever/')} />
       <FaStackOverflow color='#EC761E' onClick={() => open('https://stackoverflow.com/users/11216915/ravi-singh')} />
-      <SiLinkedin color='#0177B5' onClick={() => open('https://www.linkedin.com/in/ravi-raysk/')} />
+      <SiLinkedin color='#0177B5' onClick={() => open('https://www.linkedin.com/in/ravi-ksingh/')} />
       <MediumIcon color='#000' onClick={() => open('https://medium.com/@kissmi')} />
       <Image alt='Epam Anywere Club' src='/epam_any.png' width={30} height={30} onClick={() => open('https://aw.club/global/en/blog/how-to-enhance-website-performance-with-next-js')}  />
     </LinksContainer>
@@ -32,6 +32,7 @@ const LinksContainer = styled.div`
   align-items: center;
   gap: 1rem;
   transition: all .1ms;
+  z-index: 1;
   svg {
     cursor: pointer;
     font-size: 30px;
