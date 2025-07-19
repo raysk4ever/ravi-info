@@ -15,6 +15,11 @@ const config = {
       await config.transform(config, 'https://play.google.com/store/apps/details?id=com.quickdialapp&hl=en_US'),
       await config.transform(config, 'https://play.google.com/store/apps/details?id=com.shail.raysk.emergencycall&hl=en_US'),
       await config.transform(config, 'https://easy-resume-builder-web.web.app'),
+      await config.transform(config, 'https://www.linkedin.com/in/ravi-ksingh/'),
+      await config.transform(config, 'https://github.com/raysk4ever/'),
+      await config.transform(config, 'https://engx.space/global/en/blog/how-to-enhance-website-performance-with-next-js'),
+      await config.transform(config, 'https://kissmi.medium.com/'),
+      await config.transform(config, 'https://stackoverflow.com/users/11216915/ravi-singh'),
       // Add more static pages here as needed
     ]
   },
