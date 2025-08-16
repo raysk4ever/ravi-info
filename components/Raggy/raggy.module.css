@@ -48,6 +48,16 @@
   background-color: rgb(0, 17, 67);
   padding: 10px 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.header .desc {
+  /* margin-right: auto; */
+  font-size: x-small;
+    font-size: 12px;
+  color: #777;
+  
 }
 
 .suggestions {

@@ -52,7 +52,8 @@ export default function Raggy() {
 function RaggyHeader () {
   return (
     <section className={styles.header}>
-      😎 Gama AI - Chat with Me!
+      <span>😎 Gama AI - Chat with Me!</span>
+      <span className={styles.desc}>⚠️ Disclaimer: Gama AI may make mistakes. Responses are AI-generated and based on pre-trained data.</span>
     </section>
   )
 }
