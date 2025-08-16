@@ -26,7 +26,7 @@ export default async function handler(
   try {
     for await (const chunk of runRag({ question })) {
       res.write(chunk)  // send chunk as it arrives
-      res.flush?.()   
+      res.flush?.()
     }
     res.end()
   } catch (err) {

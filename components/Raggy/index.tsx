@@ -15,7 +15,7 @@ export default function Raggy() {
   ])
 
   async function callRagApi(question: string) {
-    setMessages(prev => [...prev, {id: crypto.randomUUID(), message: question, role: 'user' }, { id: 111, message: 'Thinking...', role: 'system' }])
+    setMessages(prev => [...prev, {id: crypto.randomUUID(), message: question, role: 'user' }, { id: crypto.randomUUID(), message: 'Thinking...', role: 'system' }])
     const response = await fetch(`/api/raggy?q=${encodeURIComponent(question)}`)
     const reader = response.body?.getReader()
     const decoder = new TextDecoder()
@@ -50,7 +50,7 @@ export default function Raggy() {
 function RaggyHeader () {
   return (
     <section className={styles.header}>
-      Chat with Me!
+      😎 Raggy AI - Chat with Me!
     </section>
   )
 }
