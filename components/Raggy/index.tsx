@@ -30,7 +30,9 @@ export default function Raggy() {
         updated[updated.length - 1] = { ...updated[updated.length - 1], message: result}
         return updated
       })
-      endMessageRef.current?.scrollIntoView(false)
+      setTimeout(() => {
+        endMessageRef.current?.scrollIntoView({behavior: "smooth",  inline: "center", block: "nearest",})
+      }, 10)
     }
 
     return result
@@ -58,7 +60,7 @@ function RaggyHeader () {
 const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageRef) => {
   useEffect(() => {
     if (endMessageRef?.current) {
-      endMessageRef.current?.scrollIntoView(false)
+      endMessageRef.current?.scrollIntoView({behavior: "smooth",  inline: "center", block: "nearest",})
     }
   }, [messages.length, endMessageRef])
 
@@ -107,7 +109,7 @@ function RaggyInput({ callRagApi }: any) {
       {suggestions.map(s => <span onClick={() => callRagApi(s)} key={s}>{s}</span>)}
     </div>
     <form onSubmit={handleOnClick} className={styles.inputContainer}>
-      <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Enter your question here.." />
+      <input autoFocus value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Enter your question here.." />
       <button type='submit'>Send</button>
     </form>
     </>
