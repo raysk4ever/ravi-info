@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.css'
 import LandingPage from '@/components/Landing'
 import Projects from '@/components/Projects'
 import Links from '@/components/Links'
+import Raggy from '@/components/Raggy'
 
 export default function Home() {
   return (
@@ -17,12 +18,19 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Links />
-        <LandingPage />
+        <section className={styles.splitter}>
+          <section className={styles.left}>
+            <LandingPage />
+          </section>
+          <section className={styles.raggy}>
+            <Raggy />
+          </section>
+        </section>
         <Projects />
       </main>
       <footer className={styles.footer}>
         <p>© {new Date().getFullYear()} Ravi Singh. All rights reserved.</p>
-        </footer>
+      </footer>
     </>
   )
 }

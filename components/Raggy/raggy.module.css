@@ -1,0 +1,70 @@
+.raggyContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.raggyContainer .header {
+  background-color: rgb(0, 17, 67);
+  padding: 10px 1rem;
+  margin-bottom: 1rem;
+}
+
+.messageList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0px 1rem;
+  overflow-y: auto;
+}
+
+.messageItem {
+  background-color: #f1f1f11e;
+  padding: 10px 1rem;
+  align-self: flex-start;
+  max-width: 80%;
+  color: rgb(192, 187, 187);
+  line-height: 1.6;
+}
+
+.messageItem.user {
+  align-self: flex-end;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.inputContainer input {
+  width: 100%;
+  padding: 0px 10px;
+  border: none;
+  outline: none;
+}
+
+.inputContainer button {
+  padding: 10px 1rem;
+  border: none;
+}
+
+.messageItem ul,
+.messageItem ol {
+  padding-left: 1.5rem;
+  list-style-position: inside; /* keeps ::marker inside */
+}
+
+.messageItem blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1rem;
+  color: #666;
+}
+
+.messageItem pre {
+  background: #f6f8fa;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
