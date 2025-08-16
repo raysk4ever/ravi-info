@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
 import styles from './raggy.module.css'
 import { marked } from 'marked';
 import DOMPurify from "dompurify"
@@ -55,12 +55,13 @@ function RaggyHeader () {
   )
 }
 
-const Messages = forwardRef(({ messages = [] }, endMessageRef) => {
+const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageRef) => {
   useEffect(() => {
-    if (endMessageRef.current) {
-      endMessageRef.current.scrollIntoView(false)
+    if (endMessageRef?.current) {
+      endMessageRef.current?.scrollIntoView(false)
     }
-  }, [messages.length])
+  }, [messages.length, endMessageRef])
+
   return (
     <div className={styles.messageList}>
       {messages.map(m => <MessageItem {...m} key={m.id} />)}
@@ -68,6 +69,7 @@ const Messages = forwardRef(({ messages = [] }, endMessageRef) => {
     </div>
   )
 })
+Messages.displayName = 'Messages'
 
 function MessageItem({ message = '', role = 'user' }: Message) {
   const html = marked.parse(message) as string
