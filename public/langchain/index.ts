@@ -20,8 +20,7 @@ const __dirname = path.dirname(__filename)
 configDotenv()
 
 export async function *runRag({ question = '' }) {
-  // const indexPath = path.join(__dirname, "faiss_index");
-  const indexPath = path.join(process.cwd(), "public/langchain/faiss_index")
+  const indexPath = path.join(__dirname, "faiss_index");
   if (!fs.existsSync(indexPath)) {
     console.log('❌ FAISS Index not Found!!', indexPath)
     return
