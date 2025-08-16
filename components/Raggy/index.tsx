@@ -50,7 +50,7 @@ export default function Raggy() {
 function RaggyHeader () {
   return (
     <section className={styles.header}>
-      😎 Raggy AI - Chat with Me!
+      😎 Gama AI - Chat with Me!
     </section>
   )
 }
@@ -64,6 +64,10 @@ const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageR
 
   return (
     <div className={styles.messageList}>
+      {!messages.length && <div className={styles.raggyPlaceholder}>
+        <h1>Gama AI 🐸</h1>
+        <h3>Ask me anything about Ravi</h3>
+      </div>}
       {messages.map(m => <MessageItem {...m} key={m.id} />)}
       <div ref={endMessageRef}></div>
     </div>
@@ -90,10 +94,22 @@ function RaggyInput({ callRagApi }: any) {
     setInput('')
     callRagApi(input)
   }
+  const suggestions = [
+    'Who is Ravi Singh?',
+    'Can you summarize your professional background?',
+    'What kind of roles are you looking for next?',
+    'Tell me something unique about yourself?',
+    'What is your main tech stack?',
+  ]
   return (
+    <>
+    <div className={styles.suggestions}>
+      {suggestions.map(s => <span onClick={() => callRagApi(s)} key={s}>{s}</span>)}
+    </div>
     <form onSubmit={handleOnClick} className={styles.inputContainer}>
-      <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Ask me anything about Ravi.." />
+      <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Enter your question here.." />
       <button type='submit'>Send</button>
     </form>
+    </>
   )
 }
