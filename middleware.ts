@@ -5,7 +5,7 @@ import { getRedis } from "./redis";
 
 export async function middleware(req: NextRequest) {
   try {
-    const ip = req.ip ?? "unknown";
+    const ip = req.ip ?? req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
     const key = `rate-limit:${ip}`;
     const redis = await getRedis()
     const count = (await redis.incr(key)) ?? 0;
