@@ -43,11 +43,12 @@ const LinksContainer = styled.div`
   }
   /* On screens that are 600px or less, set the background color to olive */
   @media screen and (max-width: 600px) {
-    width: 100vw;
+    width: 80vw;
     justify-content: center;
     margin-bottom: 34px;
     top: 40px;
     flex-direction : row;
+
   }
 `
 const MediumIcon = styled(FaMedium)`

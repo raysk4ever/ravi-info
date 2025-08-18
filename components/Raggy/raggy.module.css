@@ -68,6 +68,7 @@
   padding: 0px 10px;
   white-space: nowrap;
   margin-top: 1rem;
+  scrollbar-width: none;
 }
 
 .suggestions::-webkit-scrollbar {
@@ -146,3 +147,35 @@
   border-radius: 0.5rem;
   overflow-x: auto;
 }
+
+@media (prefers-color-scheme: light) {
+  .raggyContainer {
+    border: 1px dashed gray;
+  }
+  .raggyContainer .header {
+    background-color: #000;
+    color: #ddd;
+    z-index: 1;
+  }
+  .raggyContainer .header .desc {
+    color: #999;
+  }
+  .raggyContainer .raggyPlaceholder {
+    color: black;
+  }
+  .raggyContainer .messageItem {
+    color: #000;
+    background-color: rgba(0, 128, 0, 0.174);
+    z-index: 1;
+  }
+   .raggyContainer .messageItem.system {
+    background-color: rgba(127, 137, 127, 0.174);
+   }
+   .raggyContainer .inputContainer button {
+    background-color: rgba(0, 128, 0, 0.174);
+   }
+   .raggyContainer .suggestions span:hover {
+    color: white;
+   }
+}
+

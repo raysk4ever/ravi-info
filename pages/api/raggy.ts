@@ -16,6 +16,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const ready = (req.query.ready as string)
+  if (ready) {
+    res.end('Ready')
+  }
   const question = (req.query.q as string) || "Hello"
   // res.setHeader("Content-Type", "text/plain; charset=utf-8")
   // res.setHeader("Transfer-Encoding", "chunked")
