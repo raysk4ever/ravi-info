@@ -1,6 +1,6 @@
 // middleware.ts
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import { getRedis } from "./redis";
 
 export async function middleware(req: NextRequest) {
@@ -21,10 +21,12 @@ export async function middleware(req: NextRequest) {
 
     return NextResponse.next();
   } catch (error) {
-    return new Response(
-      "😕 Oops! Our chat service is having a little trouble right now. Please try again in a few minutes 💙",
-      { status: 503 }
-    );
+    console.error('Middleware Error: Redis is down...')
+    // return new Response(
+    //   "😕 Oops! Our chat service is having a little trouble right now. Please try again in a few minutes 💙",
+    //   { status: 503 }
+    // );
+    return NextResponse.next()
   }
 
 }
