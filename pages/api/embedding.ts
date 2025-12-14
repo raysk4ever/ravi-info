@@ -5,6 +5,7 @@ import { Document } from '@langchain/core/documents'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import { stat } from 'fs'
+import { OpenAIEmbeddings } from '@langchain/openai'
 
 
 export default async function handler(
@@ -13,9 +14,12 @@ export default async function handler(
 ) {
   try {
     
-    const embeddings = new OllamaEmbeddings({
-      baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
-      model: 'nomic-embed-text:latest'
+    // const embeddings = new OllamaEmbeddings({
+    //   baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
+    //   model: 'nomic-embed-text:latest'
+    // })
+    const embeddings = new OpenAIEmbeddings({
+      model: 'text-embedding-3-small'
     })
     if (req.method !== 'POST') {
       res.setHeader("Allow", ["POST"])
