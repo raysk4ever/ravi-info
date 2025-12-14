@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url'
 import path from 'path'
 import { stat } from 'fs'
 import { OpenAIEmbeddings } from '@langchain/openai'
+import { getEmbeddings } from '@/langchain/embedding'
+import { getIndexPath, getVectorStore } from '@/langchain/vector-store'
 
 
 export default async function handler(
@@ -13,14 +15,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    
-    // const embeddings = new OllamaEmbeddings({
-    //   baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
-    //   model: 'nomic-embed-text:latest'
-    // })
-    const embeddings = new OpenAIEmbeddings({
-      model: 'text-embedding-3-small'
-    })
+    const isDev = process.env.NODE_ENV === 'development';
+    const embeddingModel = isDev ? 'ollama' : 'openai'
+    const embeddings = getEmbeddings(embeddingModel)
     if (req.method !== 'POST') {
       res.setHeader("Allow", ["POST"])
       return res.status(405).end(`Method ${req.method} Not Allowed`)
@@ -36,7 +33,10 @@ export default async function handler(
         allDocs.push(doc)
       }
       const vectorStore = await FaissStore.fromDocuments(allDocs, embeddings)
-      await vectorStore.save(path.join(__dirname, '../../public/faiss_index_openai'))
+      const filePath = getIndexPath()
+      console.log('filePath', filePath);
+      
+      await vectorStore.save(filePath)
       return res.status(200).json({ status: 'Embeddings generated from documents and FAISS index updated' })
     }
     if (!text) {

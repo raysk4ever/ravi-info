@@ -1,52 +1,32 @@
 import { configDotenv } from 'dotenv'
-import fs from 'fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url';
-import { FaissStore } from '@langchain/community/vectorstores/faiss';
-import { OpenAIEmbeddings } from '@langchain/openai';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
-import { Ollama } from '@langchain/ollama';
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { OllamaEmbeddings } from '@langchain/ollama'
-import { ChatOpenAI } from '@langchain/openai'
-
-// const embeddings = new OllamaEmbeddings({
-//   baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
-//   model: 'nomic-embed-text:latest'
-// })
-const embeddings = new OpenAIEmbeddings({
-  model: 'text-embedding-3-small'
-})
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+import { getLLM } from './llm';
+import { getVectorStore } from './vector-store';
 
 configDotenv()
 
 export async function* runRag({ question = '' }) {
-  // const indexPath = path.join(__dirname, "faiss_index");
-  const indexPath = path.join(process.cwd(), "public/faiss_index_openai");
-  if (!fs.existsSync(indexPath)) {
-    console.log('❌ FAISS Index not Found!!', indexPath)
-    return
-  }
 
-  console.log("🔄 Loading FAISS index...");
-  const t1 = performance.now();
-  const vectorStore = await FaissStore.load(indexPath, embeddings);
-  console.log(`✅ Loaded FAISS index in ${performance.now() - t1} ms`);
-  const llm = getLLM({ model: 'openai' })
+  const vectorStore = await getVectorStore()
+  const llm = getLLM()
+  // log llm name
+  console.log("🤖 Using LLM:", llm.constructor.name);
+  
   console.log("🔄 Performing similarity search...");
   const result = await vectorStore.similaritySearchWithScore(question, 3)
   console.log("🔄 Generating response...", result);
+
   // build context with metadata from result to string
   const context = result.map(([doc, score], idx) => {
     return `Document ${idx + 1} (Score: ${score.toFixed(4)}):\n${doc.pageContent}\nMetadata: ${JSON.stringify(doc.metadata)}\n`
   }).join('\n----------------\n')
   console.log('⚡️context', context);
+  
   const promptValue = await getPromptTemplate().invoke({
     context,
     input: question
   })
+  
   // console.log('prompt value', promptValue);
 
   const llmResponse = await llm.stream(promptValue)
@@ -54,19 +34,13 @@ export async function* runRag({ question = '' }) {
   // const tt = await llmResponse.getReader().read()
   // console.log('tt', tt);
   const reader = llmResponse.getReader(); // ✅ ONE reader only
-  const decoder = new TextDecoder();
 
   while (true) {
-    const { done, value, ...rest } = await reader.read();
+    const { done, value } = await reader.read();
     if (done) break;
-    // console.log("chunk:", value);
     yield typeof value === "string" ? value : value.content ?? "";
 
   }
-  // for await (const chunk of llmResponse) {
-  //   console.log(chunk.content)
-  //   yield chunk.content
-  // }
 }
 
 // function getPromptTemplate() {
@@ -148,28 +122,4 @@ Answer:
     ["human", `${humanMessage}`]
   ])
   return prompt
-}
-
-function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { model: 'ollama' }) {
-  if (model === 'openai') {
-    return new ChatOpenAI({
-      model: 'gpt-4.1-mini',
-      temperature: 0.5,
-      streaming: true,
-    });
-  }
-  if (model === 'gemini') {
-    return new ChatGoogleGenerativeAI({
-      model: "gemini-2.0-flash",
-      temperature: 0.5,
-      maxOutputTokens: 1024,
-    });
-  }
-  // if (model === 'ollama') {
-  return new Ollama({
-    baseUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
-    model: 'llama3.1:8b', // 'qwen3:8b', // 'phi:latest',
-    temperature: 0.2,
-  });
-  // }
 }

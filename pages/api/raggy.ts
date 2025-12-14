@@ -19,6 +19,7 @@ export default async function handler(
 ) {
   const limit = await rateLimit(req)
   if (!limit.allowed) {
+    console.log('😢 Limit exceeds.');
     return res.status(429).end("Hey there 👋, looks like you’re asking a lot of questions really quickly. Let’s take a short pause and try again in a minute 😊")
     // return new Response("", { status: 429 });
   }
@@ -36,7 +37,7 @@ export default async function handler(
   try {
     for await (const chunk of runRag({ question })) {
       res.write(chunk)  // send chunk as it arrives
-      res.flush?.()
+      res.flush?.() // imp: flush the response buffer to ensure immediate delivery
     }
     res.end()
   } catch (err) {

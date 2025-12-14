@@ -34,6 +34,7 @@ export async function rateLimit(req: NextApiRequest) {
     { upsert: true, returnDocument: "after" }
   );
   console.log(doc, 'doc')
-
-  return { allowed: doc?.count <= 5 };
+  const isDev = process.env.NODE_ENV === 'development';
+  const LIMIT = isDev ? 20 : 5; // higher limit for development
+  return { allowed: doc?.count <= LIMIT };
 }
