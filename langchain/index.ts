@@ -24,7 +24,7 @@ configDotenv()
 
 export async function* runRag({ question = '' }) {
   // const indexPath = path.join(__dirname, "faiss_index");
-  const indexPath = path.join(process.cwd(), "public/faiss_index")
+  const indexPath = path.join(process.cwd(), "public/faiss_index_openai");
   if (!fs.existsSync(indexPath)) {
     console.log('❌ FAISS Index not Found!!', indexPath)
     return

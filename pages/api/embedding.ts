@@ -32,7 +32,7 @@ export default async function handler(
         allDocs.push(doc)
       }
       const vectorStore = await FaissStore.fromDocuments(allDocs, embeddings)
-      await vectorStore.save(path.join(__dirname, '../../public/faiss_index'))
+      await vectorStore.save(path.join(__dirname, '../../public/faiss_index_openai'))
       return res.status(200).json({ status: 'Embeddings generated from documents and FAISS index updated' })
     }
     if (!text) {
