@@ -20,6 +20,7 @@ const config = {
       await config.transform(config, 'https://engx.space/global/en/blog/how-to-enhance-website-performance-with-next-js'),
       await config.transform(config, 'https://kissmi.medium.com/'),
       await config.transform(config, 'https://stackoverflow.com/users/11216915/ravi-singh'),
+      await config.transform(config, 'https://gama.socialamigo.in/'),
       // Add more static pages here as needed
     ]
   },

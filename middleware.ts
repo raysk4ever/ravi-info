@@ -1,8 +1,8 @@
 // middleware.ts
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { getRedis } from "./redis";
 
+import { getRedis } from "./redis";
 export async function middleware(req: NextRequest) {
   try {
     const ip = req.ip ?? req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
@@ -28,7 +28,6 @@ export async function middleware(req: NextRequest) {
     // );
     return NextResponse.next()
   }
-
 }
 
 export const config = {
