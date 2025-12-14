@@ -35,5 +35,5 @@ export async function rateLimit(req: NextApiRequest) {
   );
   console.log(doc, 'doc')
 
-  return { allowed: doc?.count <= 2 };
+  return { allowed: doc?.count <= 5 };
 }
