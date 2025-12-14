@@ -12,7 +12,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-
+    
     const embeddings = new OllamaEmbeddings({
       baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
       model: 'nomic-embed-text:latest'

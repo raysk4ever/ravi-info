@@ -3,18 +3,20 @@ import fs from 'fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url';
 import { FaissStore } from '@langchain/community/vectorstores/faiss';
-// import { OpenAIEmbeddings } from '@langchain/openai';
+import { OpenAIEmbeddings } from '@langchain/openai';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import { Ollama } from '@langchain/ollama';
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { OllamaEmbeddings } from '@langchain/ollama'
 import { ChatOpenAI } from '@langchain/openai'
 
-const embeddings = new OllamaEmbeddings({
-  baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
-  model: 'nomic-embed-text:latest'
+// const embeddings = new OllamaEmbeddings({
+//   baseUrl: process.env.EMBEDDING_URL || 'http://localhost:11434',
+//   model: 'nomic-embed-text:latest'
+// })
+const embeddings = new OpenAIEmbeddings({
+  model: 'text-embedding-3-small'
 })
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
