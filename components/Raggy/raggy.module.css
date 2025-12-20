@@ -11,6 +11,11 @@
   height: 360px;
   margin-left: -400px;
 }
+.resumeDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
 
 .raggyContainer::after {
   background: var(--primary-glow);
@@ -49,13 +54,72 @@
   padding: 10px 1rem;
   margin-bottom: 1rem;
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.raggyContainer .header div:nth-child(1) {
+  display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
+.raggyContainer .header div.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.raggyContainer .header div.actions:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.raggyContainer .header div.actions:active {
+  transform: scale(0.95);
+}
+.raggyContainer .raggyTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  animation: blink-gradient 5s infinite;
+  background: linear-gradient(270deg, #4e77d8, #50c878, #4e77d8);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.raggyContainer .raggyDesc {
+  font-size: 1.2rem;
+  color: #777;
+  animation: blink-gradient 5s infinite;
+  background: linear-gradient(270deg, #4e77d8, #50c878, #4e77d8);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes blink-gradient {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.raggyContainer .raggyDesc {
+  font-size: 1rem;
+  color: #777;
+}
+
 .header .desc {
   /* margin-right: auto; */
   font-size: x-small;
-    font-size: 12px;
+  font-size: 12px;
   color: #777;
   
 }
@@ -104,6 +168,28 @@
   line-height: 1.6;
   scroll-behavior: smooth;
 }
+.messageItem.loading {
+  font-style: italic;
+  opacity: 0.7;
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    to right,
+    #f1f1f11e 0%,
+    #e0e0e02b 20%,
+    #f1f1f11e 40%,
+    #f1f1f11e 100%
+  );
+  background-size: 400% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
 
 .messageItem.user {
   align-self: flex-end;
@@ -121,12 +207,28 @@
   padding: 0px 10px;
   border: none;
   outline: none;
+  background-color: #222;
+  color: white;
+
 }
 
 .inputContainer button {
   padding: 10px 1rem;
   border: none;
   cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+.inputContainer button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+  background-color: #4e77d81a;
+  background-image: linear-gradient(270deg, #4e77d8, #50c878, #4e77d8);
+  background-size: 200% 200%;
+  color: white;
+  animation: blink-gradient 5s infinite;
+}
+.inputContainer button:active {
+  transform: scale(0.95);
 }
 
 .messageItem ul,
@@ -147,8 +249,17 @@
   border-radius: 0.5rem;
   overflow-x: auto;
 }
+.messageItem a {
+  /* color: #4e77d8; */
+  color: rgb(50 222 132);
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 @media (prefers-color-scheme: light) {
+  .messageItem a {
+    color: #4e77d8;
+  }
   .raggyContainer {
     border: 1px dashed gray;
   }
@@ -176,6 +287,21 @@
    }
    .raggyContainer .suggestions span:hover {
     color: white;
+   }
+   .raggyContainer .inputContainer input {
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+   }
+   .messageItem.loading {
+    background: linear-gradient(
+      to right,
+      #e0e0e0 0%,
+      #cfcfcf 20%,
+      #cfcfcf 40%,
+      #e0e0e0 100%
+
+    );
    }
 }
 

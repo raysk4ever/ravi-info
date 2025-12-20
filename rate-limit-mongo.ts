@@ -1,6 +1,5 @@
 import { MongoClient } from "mongodb";
 import { NextApiRequest } from "next";
-import { NextRequest } from "next/server";
 
 function getClientIp(req: NextApiRequest): string {
   const xff = req.headers["x-forwarded-for"];
@@ -33,8 +32,9 @@ export async function rateLimit(req: NextApiRequest) {
     },
     { upsert: true, returnDocument: "after" }
   );
-  console.log(doc, 'doc')
   const isDev = process.env.NODE_ENV === 'development';
-  const LIMIT = isDev ? 20 : 5; // higher limit for development
+  const LIMIT = isDev ? 200 : 5; // higher limit for development
+  console.log(`Rate limit for ${ip}: ${doc?.count}/${LIMIT}`);
+  
   return { allowed: doc?.count <= LIMIT };
 }
