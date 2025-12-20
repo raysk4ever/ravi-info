@@ -92,7 +92,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <ProjectsContainer>
+    <ProjectsContainer className='projects'>
       <h1>Projects</h1>
       <ProjectsWrapper>
         {projects.map((project) => <ProjectItem key={project.name} {...project} />)}

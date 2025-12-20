@@ -61,7 +61,7 @@ const LandingPage = () => {
   return (
     <>
       <div className={styles.description}>
-        <p>
+        <p className={styles.badge}>
           <code className={styles.code}>
             Building with AI
           </code>
