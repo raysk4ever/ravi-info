@@ -14,7 +14,8 @@ function getClientIp(req: NextApiRequest): string {
 }
 
 const client = new MongoClient(process.env.MONGODB_URI!);
-const col = client.db().collection("rate_limits");
+const dbName = process.env.MONGODB_DB_NAME! || "test";
+const col = client.db(dbName).collection("rate_limits");
 
 export async function rateLimit(req: NextApiRequest) {
   const ip = getClientIp(req);
