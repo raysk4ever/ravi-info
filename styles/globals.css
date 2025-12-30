@@ -96,9 +96,11 @@ body {
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      #212121
+      /* rgb(var(--background-end-rgb)) */
     )
     rgb(var(--background-start-rgb));
+    background-color: black;
 }
 
 a {
