@@ -12,7 +12,7 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ posts, mediumPosts, entries }: any) {
-  // console.log('posts', posts);
+  console.log('posts', entries);
   
   return (
     <>
@@ -37,6 +37,12 @@ export default function Blog({ posts, mediumPosts, entries }: any) {
             <div className={style.blogCardFooter}>
               <span className={style.blogCardDate}>{new Date(post.date).toDateString()}</span>
               {post.source === "medium" && <span className={style.blogBadge}>Medium</span>}
+              {/* tags */}
+              <div className={style.blogTags}>
+                {post.tags && post.tags.map((tag: string) => (
+                  <a key={tag} href={`/tags/${tag}`} className={style.blogTag}>#{tag}</a>
+                ))}
+              </div>
             </div>
           </article>
         ))}
