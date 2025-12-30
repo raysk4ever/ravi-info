@@ -188,7 +188,7 @@ function RaggyHeader () {
 
 
 const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageRef) => {
-  console.log('messages', messages);
+  // console.log('messages', messages);
   useEffect(() => {
     if (endMessageRef?.current) {
       endMessageRef.current?.scrollIntoView({behavior: "smooth",  inline: "center", block: "nearest",})

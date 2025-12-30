@@ -6,13 +6,13 @@ import style from "@/styles/blog.module.css";
 export async function getStaticProps() {
     const localPosts = getAllPosts();
     const mediumPosts = await getAllExternalPosts();
-  console.log('mediumPosts', mediumPosts);
+  // console.log('mediumPosts', mediumPosts);
   const entries = await getAllBlogEntries();
   return { props: { posts: localPosts, mediumPosts, entries }, revalidate: 3600 };
 }
 
 export default function Blog({ posts, mediumPosts, entries }: any) {
-  console.log('posts', posts);
+  // console.log('posts', posts);
   
   return (
     <>
