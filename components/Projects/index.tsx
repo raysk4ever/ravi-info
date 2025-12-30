@@ -3,6 +3,7 @@ import ProjectItem from './ProjectItem'
 import { styled } from 'styled-components'
 import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiNodedotjs, SiPython, SiReact, SiTypescript, SiVite } from 'react-icons/si'
 import { TbBrandReactNative, TbBrandSocketIo } from 'react-icons/tb'
+import styles from '@/styles/Home.module.css'
 
 const projects = [
   {
@@ -92,7 +93,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <ProjectsContainer className='projects'>
+    <ProjectsContainer className={styles.projects}>
       <h1>Projects</h1>
       <ProjectsWrapper>
         {projects.map((project) => <ProjectItem key={project.name} {...project} />)}

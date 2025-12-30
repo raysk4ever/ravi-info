@@ -364,3 +364,7 @@
     transform: rotate(0deg);
   }
 }
+
+.projects {
+  margin-top: 2rem;
+}

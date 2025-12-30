@@ -7,9 +7,11 @@ import { useRouter } from "next/router";
 // import { getInitialTheme, applyTheme, toggleTheme } from "@/lib/theme";
 
 import styles from "@/styles/navbar.module.css";
+import useRaggy from "@/hooks/use-raggy";
 
 export default function Navbar() {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
+  const {callRagApi} = useRaggy()
   // const [theme, setTheme] = useState("system");
 
   // useEffect(() => {
@@ -17,7 +19,6 @@ export default function Navbar() {
   //   setTheme(t);
   //   applyTheme(t);
   // }, []);;
-
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
@@ -34,6 +35,30 @@ export default function Navbar() {
           >
             {theme === "dark" ? "🌙" : "☀️"}
           </button> */}
+           <button
+            className={`${styles.resumeButton} ${styles.aiButton}`}
+            onClick={() => {
+              const message = [
+                "Share me your Resume",
+                "Get Resume",
+                "Can you provide your Resume?",
+                "I would like to see your Resume",
+                "Please share your Resume"
+              ]
+              push('/');
+              callRagApi(message[Math.floor(Math.random() * message.length)]);
+              // focus ragggy container
+               requestAnimationFrame(() => {
+                const raggyContainer = document.getElementById("raggy-container");
+                if (raggyContainer) {
+                  raggyContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+              });
+            }}
+            aria-label="Get Resume"
+          >
+            Get Resume
+          </button>
         </div>
       </div>
     </nav>
