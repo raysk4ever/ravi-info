@@ -12,7 +12,7 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ posts, mediumPosts, entries }: any) {
-  console.log('posts', entries);
+  // console.log('posts', entries);
   
   return (
     <>
