@@ -73,6 +73,10 @@ export default async function handler(
     writeEvent(res, { type: 'status', step: 'connecting' })
 
     for await (const chunk of runRag({ question, onStatus: (step: string) => writeEvent(res, { type: 'status', step }) })) {
+      if (typeof chunk === 'object' && chunk.__model) {
+        writeEvent(res, { type: 'model', name: chunk.__model })
+        continue
+      }
       writeEvent(res, { type: 'text', delta: chunk })
     }
     writeEvent(res, { type: "end" });

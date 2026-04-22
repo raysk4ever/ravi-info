@@ -9,8 +9,11 @@ export async function* runRag({ question = '', onStatus }: { question: string; o
 
   onStatus?.('loading_model')
   const vectorStore = await getVectorStore()
-  const llm = getLLM()
-  console.log("🤖 Using LLM:", llm.constructor.name);
+  const { llm, modelName } = getLLM()
+  console.log("🤖 Using LLM:", modelName);
+
+  // Yield model info as first value
+  yield { __model: modelName };
 
   onStatus?.('searching')
   console.log("🔄 Performing similarity search...");
