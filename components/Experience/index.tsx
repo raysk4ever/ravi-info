@@ -3,28 +3,31 @@ import styles from "@/styles/Home.module.css";
 
 const experiences = [
   {
-    role: "AI Engineer & Senior Software Engineer",
-    company: "KimblyTech",
-    period: "2022 — Present",
+    role: "Senior Software Engineer",
+    company: "EPAM Systems Inc.",
+    location: "Gurgaon, India",
+    period: "Oct 2023 — Present",
     description:
-      "Architecting Agentic AI systems and RAG pipelines using LangChain, LangGraph, and MCP. Building multi-agent orchestration workflows with tool-calling, memory, and retrieval. Deploying LLM-powered features across production applications with Next.js, Node.js, and AWS.",
-    highlights: ["LangChain", "LangGraph", "MCP", "RAG", "Agentic AI", "AWS"],
+      "Building AI-driven internal tools for adidas, including 'Classy AI Assistant' — a conversational AI powered by LangChain and LlamaIndex for HTS code classification and operational intelligence. Enabled natural language workflows for reporting, analytics, task assignments, and job re-triggering. Implemented frontend caching, lazy loading, and code splitting achieving 10% performance improvement and 20% bundle size reduction.",
+    highlights: ["LangChain", "LlamaIndex", "React", "Node.js", "AI Assistant", "Performance"],
   },
   {
     role: "Software Engineer",
-    company: "Teasit",
-    period: "2020 — 2022",
+    company: "Teasit Technologies Inc.",
+    location: "Miami, Florida (Remote)",
+    period: "Feb 2021 — Oct 2023",
     description:
-      "Developed and maintained the Teasit PWA platform with real-time features using Socket.io. Built AI-assisted content moderation tools and integrated NLP-based search. Led mobile app development with React Native.",
-    highlights: ["React", "Socket.io", "NLP", "React Native", "MongoDB"],
+      "Developed Teasit.com, a high-performance video-sharing PWA with 99% Lighthouse score and 100% SEO. Designed a scalable video processing microservice supporting 10,000+ users using FFmpeg and Node.js. Built AI-based video auto-tagging with AWS Kinesis. Containerized services with Docker and deployed on Kubernetes with auto-scaling.",
+    highlights: ["Next.js", "React", "FFmpeg", "Docker", "Kubernetes", "AWS"],
   },
   {
-    role: "Junior Developer",
-    company: "Freelance / Open Source",
-    period: "2018 — 2020",
+    role: "Software Engineer",
+    company: "Envirya Technologies",
+    location: "Gurgaon, India",
+    period: "Aug 2019 — Feb 2021",
     description:
-      "Started career building Android applications and web tools. Early exploration of ML models and chatbot integrations. Developed multiple apps published on Google Play Store and contributed to open-source projects.",
-    highlights: ["Android", "JavaScript", "Firebase", "Chatbots"],
+      "Built a lightweight and customizable form builder using React Native. Led and mentored a team of 5 engineers across multiple projects. Developed an IVRS-based system mapping users to MSMEs. Created background services and cron-based automation tools using Node.js, MySQL, and MongoDB.",
+    highlights: ["React Native", "Node.js", "MongoDB", "MySQL", "Team Lead"],
   },
 ];
 
@@ -47,7 +50,7 @@ const Experience = () => {
               <div className={styles.timelineCard}>
                 <span className={styles.timelinePeriod}>{exp.period}</span>
                 <h3 className={styles.timelineRole}>{exp.role}</h3>
-                <h4 className={styles.timelineCompany}>{exp.company}</h4>
+                <h4 className={styles.timelineCompany}>{exp.company} <span className={styles.timelineLocation}>· {exp.location}</span></h4>
                 <p className={styles.timelineDesc}>{exp.description}</p>
                 <div className={styles.timelineTags}>
                   {exp.highlights.map((tag) => (

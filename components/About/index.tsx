@@ -14,7 +14,7 @@ const About = () => {
         <div className={styles.aboutGrid}>
           <div className={`${styles.aboutImage} reveal-left`}>
             <Image
-              src="https://avatars.githubusercontent.com/u/33181670?v=4"
+              src="/ravi.png"
               alt="Ravi Singh — AI Engineer specializing in Agentic AI and RAG"
               width={320}
               height={320}
@@ -44,16 +44,16 @@ const About = () => {
             </p>
             <div className={styles.aboutStats}>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>5+</span>
+                <span className={styles.statNumber}>{new Date().getFullYear() - 2019}+</span>
                 <span className={styles.statLabel}>Years Exp.</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>15+</span>
+                <span className={styles.statNumber}>20+</span>
                 <span className={styles.statLabel}>AI &amp; Web Projects</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>6+</span>
-                <span className={styles.statLabel}>LLM Providers</span>
+                <span className={styles.statNumber}>3</span>
+                <span className={styles.statLabel}>Companies</span>
               </div>
             </div>
           </div>

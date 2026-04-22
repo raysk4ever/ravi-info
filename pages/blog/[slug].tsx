@@ -39,13 +39,13 @@ export default function BlogPost({ post }: any) {
           property="og:url"
           content={`https://www.socialamigo.in/blog/${post.slug}`}
         />
-        <meta property="og:image" content={`https://avatars.githubusercontent.com/u/33181670?v=4`} />
+        <meta property="og:image" content="https://www.socialamigo.in/ravi.png" />
          {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         {/* <meta name="twitter:image" content={`https://socialamigo.com/og/${post.slug}.png`} /> */}
-        <meta name="twitter:image" content={`https://avatars.githubusercontent.com/u/33181670?v=4`} />
+        <meta name="twitter:image" content="https://www.socialamigo.in/ravi.png" />
       </Head>
 
        <main className={style.blogContainer}>

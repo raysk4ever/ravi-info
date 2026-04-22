@@ -17,10 +17,11 @@ function useRaggy() {
     },
     {
       id: assistantMessageId,
-      message: "Thinking...",
+      message: "",
       role: "system",
       type: "text",
-      isLoading: true
+      isLoading: true,
+      statusStep: "connecting"
     }
   ])
 
@@ -56,13 +57,24 @@ function useRaggy() {
       const event = JSON.parse(line)
 
       switch (event.type) {
+        case "status": {
+          setMessages(prev =>
+            prev.map(msg =>
+              msg.id === assistantMessageId
+                ? { ...msg, statusStep: event.step }
+                : msg
+            )
+          )
+          break
+        }
+
         case "text": {
           streamedText += event.delta
 
           setMessages(prev =>
             prev.map(msg =>
               msg.id === assistantMessageId
-                ? { ...msg, message: streamedText }
+                ? { ...msg, message: streamedText, isLoading: false, statusStep: undefined }
                 : msg
             )
           )

@@ -5,8 +5,16 @@ import { SiAndroid, SiFfmpeg, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiN
 import { TbBrandReactNative, TbBrandSocketIo } from 'react-icons/tb'
 import { GiArtificialHive } from 'react-icons/gi'
 import { BsDiagram3 } from 'react-icons/bs'
+import { RiRobot2Line } from 'react-icons/ri'
+import { VscSymbolMisc } from 'react-icons/vsc'
 
 const projects = [
+  {
+    name: 'Gamatron — AI App Builder',
+    desc: 'Build apps without code using AI. A no-code platform powered by LLMs that lets you create full applications through natural language prompts.',
+    demo: 'https://ai.socialamigo.in/',
+    tech: [RiRobot2Line, GiArtificialHive, BsDiagram3, VscSymbolMisc, SiOpenai, SiNextdotjs, SiTypescript],
+  },
   {
     name: 'Gama AI — RAG Chatbot',
     desc: 'Agentic RAG chatbot built with LangChain, FAISS vector store, and streaming responses. Uses retrieval-augmented generation to answer questions about my portfolio.',

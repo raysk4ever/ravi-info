@@ -20,6 +20,7 @@ export type Message =
       type: "text"
       message: string
       isLoading?: boolean
+      statusStep?: string
     }
   | {
       id: string
@@ -128,9 +129,7 @@ const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageR
 })
 Messages.displayName = 'Messages'
 
-function MessageItem({ type, isLoading, payload, message = '', role = 'user' }: Message) {
-  console.log('message', message);
-
+function MessageItem({ type, isLoading, payload, message = '', role = 'user', statusStep }: Message) {
   if (type === 'resume_card') {
     const { title, description, previewUrl, downloadUrl, fileType, sizeKB } = payload
     return (
@@ -146,8 +145,16 @@ function MessageItem({ type, isLoading, payload, message = '', role = 'user' }: 
       </div>
     )
   }
+
+  if (isLoading && statusStep) {
+    return (
+      <div className={`${styles.messageItem} ${styles[role]} ${styles.statusLoader}`}>
+        <StatusSteps currentStep={statusStep} />
+      </div>
+    )
+  }
+
   const html = marked.parse(message) as string
-  console.log('html', html);
   return (
     <div
       className={`${styles.messageItem} ${styles[role]} ${isLoading ? styles.loading : ''}`}
@@ -188,5 +195,26 @@ function RaggyInput({ callRagApi }: any) {
       <button type='submit'>Send</button>
     </form>
     </>
+  )
+}
+
+const STATUS_STEPS = [
+  { key: 'connecting',    label: 'Connecting',              icon: '🔌' },
+  { key: 'loading_model', label: 'Loading AI model',        icon: '🤖' },
+  { key: 'searching',     label: 'Fetching relevant docs',  icon: '📄' },
+  { key: 'generating',    label: 'Generating response',     icon: '✨' },
+]
+
+function StatusSteps({ currentStep }: { currentStep: string }) {
+  const step = STATUS_STEPS.find(s => s.key === currentStep) || STATUS_STEPS[0]
+
+  return (
+    <div className={styles.statusSteps}>
+      <div className={`${styles.statusStep} ${styles.statusActive}`}>
+        <span className={styles.statusIcon}>{step.icon}</span>
+        <span className={styles.statusLabel}>{step.label}</span>
+        <span className={styles.statusDots}><span>.</span><span>.</span><span>.</span></span>
+      </div>
+    </div>
   )
 }

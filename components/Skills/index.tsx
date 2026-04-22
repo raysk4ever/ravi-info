@@ -32,10 +32,10 @@ const skillCategories = [
   {
     title: "Agentic AI & LLMs",
     skills: [
-      { icon: SiOpenai, name: "OpenAI", color: "#272323" },
+      { icon: SiOpenai, name: "OpenAI", color: "#10a37f" },
       { icon: SiGooglegemini, name: "Gemini", color: "#4285F4" },
       { icon: SiOllama, name: "Ollama", color: "#8c12b1" },
-      { icon: GiArtificialHive, name: "LangChain", color: "#1C3C3C" },
+      { icon: GiArtificialHive, name: "LangChain", color: "#3faf82" },
       { icon: BsDiagram3, name: "LangGraph", color: "#3B82F6" },
       { icon: VscSymbolMisc, name: "MCP", color: "#10B981" },
       { icon: RiRobot2Line, name: "Agentic AI", color: "#F59E0B" },
@@ -56,12 +56,12 @@ const skillCategories = [
     title: "Frontend & Full-Stack",
     skills: [
       { icon: FaReact, name: "React", color: "#5ED2F3" },
-      { icon: SiNextdotjs, name: "Next.js", color: "#111111" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#808080" },
       { icon: SiTypescript, name: "TypeScript", color: "#2F73BF" },
       { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
       { icon: FaNodeJs, name: "Node.js", color: "#77B55C" },
-      { icon: TbBrandSocketIo, name: "Socket.io", color: "#000000" },
-      { icon: TbBrandThreejs, name: "Three.js", color: "#000000" },
+      { icon: TbBrandSocketIo, name: "Socket.io", color: "#a0a0a0" },
+      { icon: TbBrandThreejs, name: "Three.js", color: "#a0a0a0" },
     ],
   },
   {

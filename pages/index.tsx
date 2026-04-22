@@ -55,7 +55,7 @@ export default function Home() {
                   url: "https://www.socialamigo.in",
                   jobTitle: "AI Engineer & Full-Stack Developer",
                   description: "AI Engineer specializing in Agentic AI, RAG pipelines, LangChain, LangGraph, and MCP",
-                  image: "https://avatars.githubusercontent.com/u/33181670?v=4",
+                  image: "https://www.socialamigo.in/ravi.png",
                   sameAs: [
                     "https://github.com/raysk4ever",
                     "https://www.linkedin.com/in/ravi-ksingh/",

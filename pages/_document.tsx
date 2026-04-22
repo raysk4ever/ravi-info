@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 const SITE_URL = 'https://www.socialamigo.in'
-const OG_IMAGE = 'https://avatars.githubusercontent.com/u/33181670?v=4'
+const OG_IMAGE = `${SITE_URL}/ravi.png`
 
 export default function Document() {
   return (
