@@ -1,110 +1,67 @@
 import React from "react";
-import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { FaAws, FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import {
-  SiFirebase,
-  SiTypescript,
-  SiMongodb,
-  SiFfmpeg,
-  SiAndroid,
-  SiHtml5,
-  SiCss3,
-  SiKubernetes,
-  SiNginx,
-  SiNextdotjs,
-  SiJavascript,
-  SiMysql,
-  SiOpenai,
-  SiGooglegemini,
-  SiOllama
-} from "react-icons/si";
-import { TbBrandThreejs, TbBrandSocketIo } from "react-icons/tb";
-import { useCallback, useState } from "react";
-import { styled } from "styled-components";
+import { FaGithub, FaStackOverflow } from "react-icons/fa";
+import { SiLinkedin, SiMedium } from "react-icons/si";
+import Raggy from "@/components/Raggy";
 
-const skills = [
-  { icon: SiOllama, name: "llamaIndex", color: "#8c12b1" },
-  { icon: SiOpenai, name: "OpenAI", color: "#272323" },
-  { icon: SiGooglegemini, name: "Gemini", color: "#4285F4" },
-  { icon: SiJavascript, name: "Javascript", color: "#F7DF1E" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#111111" },
-  { icon: FaReact, name: "React", color: "#5ED2F3" },
-  { icon: FaNodeJs, name: "Nodejs", color: "#77B55C" },
-  { icon: SiTypescript, name: "Typescript", color: "#2F73BF" },
-  { icon: SiMongodb, name: "Mongodb", color: "#51A649" },
-  { icon: SiMysql, name: "MySql", color: "#035D85" },
-  { icon: FaDocker, name: "Docker", color: "#2491E5" },
-  { icon: SiKubernetes, name: "Kubernetes", color: "#3069DD" },
-  { icon: SiFfmpeg, name: "FFMPEG", color: "#008014" },
-  { icon: SiNginx, name: "Nginx", color: "#039137" },
-  { icon: SiAndroid, name: "Android", color: "#31DE83" },
-  { icon: SiHtml5, name: "HTML5", color: "#E96328" },
-  { icon: SiCss3, name: "CSS3", color: "#2662E9" },
-  { icon: TbBrandThreejs, name: "Three.js", color: "#000000" },
-  { icon: SiFirebase, name: "Firebase", color: "#F57C00" },
-  { icon: TbBrandSocketIo, name: "Socket.io", color: "#000000" },
-  { icon: FaAws, name: "AWS", color: "#ff9900" },
+const socials = [
+  { icon: FaGithub, url: "https://github.com/raysk4ever/", label: "GitHub" },
+  { icon: FaStackOverflow, url: "https://stackoverflow.com/users/11216915/ravi-singh", label: "StackOverflow", color: "#EC761E" },
+  { icon: SiLinkedin, url: "https://www.linkedin.com/in/ravi-ksingh/", label: "LinkedIn", color: "#0177B5" },
+  { icon: SiMedium, url: "https://techgama.medium.com/", label: "Medium" },
 ];
 
 const LandingPage = () => {
-  const [iconName, setIconName] = useState("");
-  const handleOnMouseEnter = useCallback(
-    (name: string) => () => {
-      setIconName(name);
-    },
-    []
-  );
-  const handleOnMouseLeave = useCallback(() => {
-    setIconName("");
-  }, []);
   return (
-    <>
-      <div className={styles.description}>
-        <p className={styles.badge}>
-          <code className={styles.code}>
-            Building with AI
-          </code>
-          <SiGooglegemini color="#4285F4" />
-        </p>
-        <div>
-          <a
-            href="https://github.com/raysk4ever"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="https://avatars.githubusercontent.com/u/33181670?v=4"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={100}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <section className={styles.hero} id="home">
+      <div className={styles.heroContent}>
+        <div className={styles.heroText}>
+          <span className={styles.heroBadge}>
+            Building Agentic AI Systems
+          </span>
+          <h1 className={styles.heroTitle}>
+            Hi, I&apos;m <span className={styles.heroName}>Ravi Singh</span>
+          </h1>
+          <p className={styles.heroRole}>
+            AI Engineer &amp; Full-Stack Developer
+          </p>
+          <p className={styles.heroDesc}>
+            I design and build Agentic AI systems, RAG pipelines, and
+            AI-native applications using LangChain, LangGraph, MCP, and
+            modern cloud infrastructure.
+          </p>
 
-      <div className={styles.center}>
-        <Name>Ravi Singh</Name>
-        <div className={styles.icons}>
-          {skills.map(({ icon: Icon, name, color = "#000" }) => (
-            <Icon
-              onMouseEnter={handleOnMouseEnter(name)}
-              onMouseLeave={handleOnMouseLeave}
-              key={name}
-              color={color}
-              className={`${name.toLowerCase()}-icon`}
-            />
-          ))}
+          <div className={styles.heroActions}>
+            <a href="#projects" className={styles.heroPrimary}>
+              View Projects
+            </a>
+            <a href="#contact" className={styles.heroSecondary}>
+              Get In Touch
+            </a>
+          </div>
+
+          <div className={styles.heroSocials}>
+            {socials.map(({ icon: Icon, url, label, color }) => (
+              <a
+                key={label}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className={styles.socialLink}
+              >
+                <Icon color={color} />
+              </a>
+            ))}
+          </div>
         </div>
-        <div className={styles.iconName}>{iconName}</div>
+
+        <div className={styles.heroChat}>
+          <Raggy />
+        </div>
       </div>
-    </>
+    </section>
   );
 };
-export default LandingPage;
 
-const Name = styled.h1`
-  font-size: 3rem;
-`;
+export default LandingPage;

@@ -1,13 +1,31 @@
 
+import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
 
 const PP = () => {
   const searchParams = useSearchParams()
  
   const pp = searchParams.get('pp')
-  if (pp === 'quick-dial') {
-    return (
-      <>
+
+  const title = pp === 'quick-dial' ? 'Privacy Policy — Quick Dial' : 'Privacy Policy — Emergency Call INDIA'
+
+  return (
+    <>
+      <Head>
+        <title>{title} | Ravi Singh</title>
+        <meta name="description" content={title} />
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
+      {pp === 'quick-dial' ? <QuickDialPolicy /> : <EmergencyCallPolicy />}
+    </>
+  )
+}
+
+export default PP
+
+function QuickDialPolicy() {
+  return (
+    <>
       <h1>Privacy Policy for Quick Dial</h1>
       <p><strong>Effective Date:</strong> July 4, 2024</p>
   
@@ -37,8 +55,9 @@ const PP = () => {
       <p><strong>Reviewing the Policy:</strong> You are encouraged to review this Privacy Policy periodically for any updates or changes.</p>
       </>
     )
-  }
+}
 
+function EmergencyCallPolicy() {
   return ( 
     <>
     <h1>Privacy Policy for Emergency Call INDIA</h1>
@@ -72,5 +91,3 @@ const PP = () => {
     </>
   );
 }
- 
-export default PP;

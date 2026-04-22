@@ -17,16 +17,21 @@ export default function Blog({ posts, mediumPosts, entries }: any) {
   return (
     <>
       <Head>
-        <title>Blog | Ravi Singh</title>
-        <meta name="description" content="Technical blogs on React, RAG, and AI" />
-        <link rel="canonical" href="https://socialamigo.com/blog" />
+        <title>Blog | Ravi Singh — AI, RAG & Full-Stack</title>
+        <meta name="description" content="Technical articles on Agentic AI, RAG pipelines, LangChain, LLMs, React, Node.js, and full-stack development by Ravi Singh." />
+        <link rel="canonical" href="https://www.socialamigo.in/blog" />
+
+        <meta property="og:title" content="Blog | Ravi Singh" />
+        <meta property="og:description" content="Technical articles on Agentic AI, RAG, LangChain, and full-stack development." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.socialamigo.in/blog" />
       </Head>
 
       <main className={style.blogContainer}>
         <h1 className={style.blogIndexTitle}>Blog</h1>
         <div className={style.blogList}>
 
-        {entries.map(post => (
+        {entries.map((post: any) => (
           <article key={post.url} className={style.blogCard}>
             <Link href={post.url}>
               <h2 className={style.blogCardTitle}>{post.title}

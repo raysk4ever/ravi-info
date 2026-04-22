@@ -22,7 +22,9 @@ export default function TagPage({ tag, posts }) {
   return (
     <>
       <Head>
-        <title>#{tag} | Ravi Singh</title>
+        <title>{tag} Articles | Ravi Singh</title>
+        <meta name="description" content={`Articles tagged with ${tag} by Ravi Singh — AI Engineer & Full-Stack Developer.`} />
+        <link rel="canonical" href={`https://www.socialamigo.in/tags/${tag}`} />
       </Head>
 
       <main className={style.blogContainer}>

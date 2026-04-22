@@ -70,7 +70,7 @@ module.exports = {
   changefreq: "daily",
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: ["/admin/*", "/login", "/register"],
+  exclude: ["/admin/*", "/login", "/register", "/api/*", "/privacy-policy"],
 
   additionalPaths: async (config) => {
     const paths = [
@@ -78,6 +78,7 @@ module.exports = {
       await config.transform(config, 'https://base64.socialamigo.in'),
       await config.transform(config, 'https://xpense.socialamigo.in'),
       await config.transform(config, 'https://gama.socialamigo.in/'),
+      await config.transform(config, 'https://ai.socialamigo.in/'),
     ];
 
     // Local blog posts

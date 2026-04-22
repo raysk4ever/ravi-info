@@ -28,7 +28,7 @@ export default function BlogPost({ post }: any) {
         {/* Canonical */}
         <link
           rel="canonical"
-          href={`https://socialamigo.com/blog/${post.slug}`}
+          href={`https://www.socialamigo.in/blog/${post.slug}`}
         />
 
         {/* Open Graph */}
@@ -37,7 +37,7 @@ export default function BlogPost({ post }: any) {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://socialamigo.com/blog/${post.slug}`}
+          content={`https://www.socialamigo.in/blog/${post.slug}`}
         />
         <meta property="og:image" content={`https://avatars.githubusercontent.com/u/33181670?v=4`} />
          {/* Twitter */}

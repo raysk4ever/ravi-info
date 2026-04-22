@@ -1,82 +1,42 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { IconType } from 'react-icons/lib'
-import { styled } from 'styled-components'
+import styles from '@/styles/Home.module.css'
+import { HiExternalLink } from 'react-icons/hi'
 
 interface ProjectItemProps {
   name: string
   image?: string
-  demo?: string,
+  demo?: string
   tech: IconType[]
   isInternalTool?: boolean
   desc?: string
 }
-const ProjectItem = ({ name, image, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
-  const handleOnDemoClick: any = (url: string | undefined) => {
-    if (!demo) {
-      return
-    }
-    window.open(demo, '_blank')
-  }
+
+const ProjectItem = ({ name, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
   return (
-    <ItemWrapper onClick={handleOnDemoClick}>
-      <p>{name}</p>
-      {/* <Image src={image} alt={`${name}-logo`} /> */}
-      <ContentWrapper>
-        <IconList>
-          {tech.map((Icon, i) => ( <Icon size={20} key={i} /> ))}
-        </IconList>
-        <span>{desc}</span>
-      </ContentWrapper>
-    </ItemWrapper>
+    <div
+      className={styles.projectCard}
+      onClick={() => demo && window.open(demo, '_blank')}
+      role={demo ? 'link' : undefined}
+      style={{ cursor: demo ? 'pointer' : 'default' }}
+    >
+      <div className={styles.projectCardTop}>
+        <h3 className={styles.projectName}>{name}</h3>
+        {isInternalTool && (
+          <span className={styles.projectBadge}>Internal</span>
+        )}
+        {demo && !isInternalTool && (
+          <HiExternalLink className={styles.projectLinkIcon} />
+        )}
+      </div>
+      {desc && <p className={styles.projectDesc}>{desc}</p>}
+      <div className={styles.projectTech}>
+        {tech.map((Icon, i) => (
+          <Icon size={18} key={i} />
+        ))}
+      </div>
+    </div>
   )
 }
 
 export default ProjectItem
-
-
-const ItemWrapper = styled.div`
-  /* background-color: #009688; */
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 3px dotted rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  color: white;
-  font-family: var(--font-mono);
-  color: rgb(var(--foreground-rgb));
-  width: 250px;
-  margin: 10px 0px;
-  transition: all 0.1s 0s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  cursor: pointer;
-  &:hover {
-    border: 3px solid rgba(var(--callout-border-rgb), 0.6);
-    font-weight: bold;
-  }
-  img {
-    height: 60%;
-  }
-  p {
-    padding: 1rem;
-  }
-`
-const ContentWrapper = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`
-const IconList = styled.div`
-  display: flex;
-  gap: 1rem;
-`
-
-const DemoBtn = styled.div<{ isInternalTool: Boolean | undefined }>`
-  text-align: center;
-  padding: 5px 0px;
-  background-color: ${p => p.isInternalTool ? '#5f06736': '#000000'};
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 10px;
-  margin-top: auto;
-`
