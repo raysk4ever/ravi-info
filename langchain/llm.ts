@@ -5,7 +5,7 @@ import { ChatOpenAI } from "@langchain/openai";
 
 export function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { model: 'openai' }) {
   const isDev = process.env.NODE_ENV === 'development';
-  model = !isDev ? 'ollama' : model
+  model = isDev ? 'ollama' : model
   console.log('using model', model);
   const temperature = 0.5;
 
