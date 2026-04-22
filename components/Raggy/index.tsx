@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import DOMPurify from "dompurify"
 import { useAtom, useSetAtom } from 'jotai';
 import { messagesAtom } from '@/state/atoms';
+import useRaggy from '@/hooks/use-raggy';
 
 
 // type Message = {
@@ -19,6 +20,7 @@ export type Message =
       type: "text"
       message: string
       isLoading?: boolean
+      statusStep?: string
     }
   | {
       id: string
@@ -62,89 +64,10 @@ export default function Raggy() {
 
   //   return result
   // }
-async function callRagApi(question: string) {
-  const assistantMessageId = crypto.randomUUID()
+  const { callRagApi: handleCallRagApi } = useRaggy()
 
-  setMessages(prev => [
-    ...prev,
-    {
-      id: crypto.randomUUID(),
-      message: question,
-      role: "user",
-      type: "text"
-    },
-    {
-      id: assistantMessageId,
-      message: "Thinking...",
-      role: "system",
-      type: "text",
-      isLoading: true
-    }
-  ])
-
-  const response = await fetch(`/api/raggy?q=${encodeURIComponent(question)}`)
-  const reader = response.body!.getReader()
-  const decoder = new TextDecoder()
-
-  let buffer = ""
-  let streamedText = ""
-
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) {
-      // Update the final message to remove loading state
-      setMessages(prev =>
-        prev.map(msg =>
-          msg.id === assistantMessageId
-            ? { ...msg, isLoading: false }
-            : msg
-        )
-      )
-      break
-    }
-
-    buffer += decoder.decode(value, { stream: true })
-
-    const lines = buffer.split("\n")
-    buffer = lines.pop() || ""
-
-    for (const line of lines) {
-      if (!line.trim()) continue
-
-      const event = JSON.parse(line)
-
-      switch (event.type) {
-        case "text": {
-          streamedText += event.delta
-
-          setMessages(prev =>
-            prev.map(msg =>
-              msg.id === assistantMessageId
-                ? { ...msg, message: streamedText }
-                : msg
-            )
-          )
-          break
-        }
-
-        case "resume_card": {
-          setMessages(prev => [
-            ...prev,
-            {
-              id: crypto.randomUUID(),
-              role: "system",
-              type: "resume_card",
-              payload: event.payload
-            }
-          ])
-          break
-        }
-
-        case "end":
-          console.log("Stream ended")
-          break
-      }
-    }
+  async function callRagApi(question: string) {
+    await handleCallRagApi(question)
 
     setTimeout(() => {
       endMessageRef.current?.scrollIntoView({
@@ -153,14 +76,12 @@ async function callRagApi(question: string) {
       })
     }, 10)
   }
-}
-
 
   const endMessageRef = useRef<HTMLDivElement>()
 
 
   return (
-    <div className={styles.raggyContainer}>
+    <div id='raggy-container' className={styles.raggyContainer}>
       <RaggyHeader/>
       <Messages messages={messages} ref={endMessageRef} />
       <RaggyInput callRagApi={callRagApi} />
@@ -188,7 +109,7 @@ function RaggyHeader () {
 
 
 const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageRef) => {
-  console.log('messages', messages);
+  // console.log('messages', messages);
   useEffect(() => {
     if (endMessageRef?.current) {
       endMessageRef.current?.scrollIntoView({behavior: "smooth",  inline: "center", block: "nearest",})
@@ -208,9 +129,7 @@ const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageR
 })
 Messages.displayName = 'Messages'
 
-function MessageItem({ type, isLoading, payload, message = '', role = 'user' }: Message) {
-  console.log('message', message);
-
+function MessageItem({ type, isLoading, payload, message = '', role = 'user', statusStep }: Message) {
   if (type === 'resume_card') {
     const { title, description, previewUrl, downloadUrl, fileType, sizeKB } = payload
     return (
@@ -226,8 +145,16 @@ function MessageItem({ type, isLoading, payload, message = '', role = 'user' }: 
       </div>
     )
   }
+
+  if (isLoading && statusStep) {
+    return (
+      <div className={`${styles.messageItem} ${styles[role]} ${styles.statusLoader}`}>
+        <StatusSteps currentStep={statusStep} />
+      </div>
+    )
+  }
+
   const html = marked.parse(message) as string
-  console.log('html', html);
   return (
     <div
       className={`${styles.messageItem} ${styles[role]} ${isLoading ? styles.loading : ''}`}
@@ -268,5 +195,26 @@ function RaggyInput({ callRagApi }: any) {
       <button type='submit'>Send</button>
     </form>
     </>
+  )
+}
+
+const STATUS_STEPS = [
+  { key: 'connecting',    label: 'Connecting',              icon: '🔌' },
+  { key: 'loading_model', label: 'Loading AI model',        icon: '🤖' },
+  { key: 'searching',     label: 'Fetching relevant docs',  icon: '📄' },
+  { key: 'generating',    label: 'Generating response',     icon: '✨' },
+]
+
+function StatusSteps({ currentStep }: { currentStep: string }) {
+  const step = STATUS_STEPS.find(s => s.key === currentStep) || STATUS_STEPS[0]
+
+  return (
+    <div className={styles.statusSteps}>
+      <div className={`${styles.statusStep} ${styles.statusActive}`}>
+        <span className={styles.statusIcon}>{step.icon}</span>
+        <span className={styles.statusLabel}>{step.label}</span>
+        <span className={styles.statusDots}><span>.</span><span>.</span><span>.</span></span>
+      </div>
+    </div>
   )
 }

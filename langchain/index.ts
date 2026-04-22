@@ -5,16 +5,19 @@ import { getVectorStore } from './vector-store';
 
 configDotenv()
 
-export async function* runRag({ question = '' }) {
+export async function* runRag({ question = '', onStatus }: { question: string; onStatus?: (step: string) => void }) {
 
+  onStatus?.('loading_model')
   const vectorStore = await getVectorStore()
   const llm = getLLM()
-  // log llm name
   console.log("🤖 Using LLM:", llm.constructor.name);
-  
+
+  onStatus?.('searching')
   console.log("🔄 Performing similarity search...");
   const result = await vectorStore.similaritySearchWithScore(question, 3)
   console.log("🔄 Generating response...", result);
+
+  onStatus?.('generating')
 
   // build context with metadata from result to string
   const context = result.map(([doc, score], idx) => {

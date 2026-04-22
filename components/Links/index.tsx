@@ -13,7 +13,7 @@ const Links = () => {
       <FaGithub onClick={() => open('https://github.com/raysk4ever/')} />
       <FaStackOverflow color='#EC761E' onClick={() => open('https://stackoverflow.com/users/11216915/ravi-singh')} />
       <SiLinkedin color='#0177B5' onClick={() => open('https://www.linkedin.com/in/ravi-ksingh/')} />
-      <MediumIcon color='#000' onClick={() => open('https://medium.com/@kissmi')} />
+      <MediumIcon color='#000' onClick={() => open('https://techgama.medium.com/')} />
       <Image alt='Epam Anywere Club' src='/epam_any.png' width={30} height={30} onClick={() => open('https://aw.club/global/en/blog/how-to-enhance-website-performance-with-next-js')}  />
     </LinksContainer>
   )

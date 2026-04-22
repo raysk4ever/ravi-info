@@ -52,8 +52,7 @@ export default async function handler(
   try {
     const wantsResume = /resume|cv|profile|bio/i.test(question);
     if (wantsResume) {
-      // Simulate streaming text for resume request
-
+      writeEvent(res, { type: 'status', step: 'generating' })
       writeEvent(res, { type: 'text', delta: "Sure, here is my resume ❤️" })
 
       writeEvent(res, {
@@ -71,7 +70,9 @@ export default async function handler(
       return res.end()
     }
 
-    for await (const chunk of runRag({ question })) {
+    writeEvent(res, { type: 'status', step: 'connecting' })
+
+    for await (const chunk of runRag({ question, onStatus: (step: string) => writeEvent(res, { type: 'status', step }) })) {
       writeEvent(res, { type: 'text', delta: chunk })
     }
     writeEvent(res, { type: "end" });

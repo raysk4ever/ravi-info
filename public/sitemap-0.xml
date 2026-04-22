@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.socialamigo.in</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.socialamigo.in/privacy-policy</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://budget.socialamigo.in</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://base64.socialamigo.in</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://xpense.socialamigo.in</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://play.google.com/store/apps/details?id=com.quickdialapp&amp;hl=en_US</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://play.google.com/store/apps/details?id=com.shail.raysk.emergencycall&amp;hl=en_US</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://easy-resume-builder-web.web.app</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.linkedin.com/in/ravi-ksingh</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://github.com/raysk4ever</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://engx.space/global/en/blog/how-to-enhance-website-performance-with-next-js</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kissmi.medium.com</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://stackoverflow.com/users/11216915/ravi-singh</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://gama.socialamigo.in</loc><lastmod>2025-12-14T19:41:39.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in</loc><lastmod>2025-12-30T19:28:03.007Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/privacy-policy</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/tags/RAG</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/tags/LLM</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/tags/AI</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/building-rag</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/meet-ollama-run-powerful-llms-on-your-laptop-for-free</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/i-built-a-portfolio-rag-in-15-minutes-here-s-how-you-can-build-one-too-llamaindex-faiss-next-</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/understanding-kadane-s-algorithm-for-maximum-subarray</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/getting-started-with-three-js</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/getting-started-with-node-js-express</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.socialamigo.in/blog/external/binary-tree-dfs-traversing</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://budget.socialamigo.in</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://base64.socialamigo.in</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://xpense.socialamigo.in</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://gama.socialamigo.in</loc><lastmod>2025-12-30T19:28:03.008Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
