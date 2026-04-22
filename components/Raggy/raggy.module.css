@@ -170,6 +170,15 @@
   background-size: 400% 100%;
 }
 
+.modelBadge {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.65rem;
+  color: rgba(var(--foreground-rgb), 0.4);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
 /* ── Status loader ── */
 .statusLoader {
   background: transparent !important;

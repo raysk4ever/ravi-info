@@ -6,6 +6,11 @@ import { useAtom, useSetAtom } from 'jotai';
 import { messagesAtom } from '@/state/atoms';
 import useRaggy from '@/hooks/use-raggy';
 
+const MODEL_DISPLAY_NAMES: Record<string, string> = {
+  "@cf/ibm-granite/granite-4.0-h-micro": "IBM Granite 4.0",
+  "gemini-2.0-flash": "Gemini 2.0 Flash",
+  "llama3.1:8b": "Llama 3.1 8B",
+};
 
 // type Message = {
 //   id: number | string,
@@ -21,6 +26,7 @@ export type Message =
       message: string
       isLoading?: boolean
       statusStep?: string
+      modelName?: string
     }
   | {
       id: string
@@ -129,7 +135,7 @@ const Messages = forwardRef<HTMLDivElement, any>(({ messages = [] }, endMessageR
 })
 Messages.displayName = 'Messages'
 
-function MessageItem({ type, isLoading, payload, message = '', role = 'user', statusStep }: Message) {
+function MessageItem({ type, isLoading, payload, message = '', role = 'user', statusStep, modelName }: Message & { modelName?: string }) {
   if (type === 'resume_card') {
     const { title, description, previewUrl, downloadUrl, fileType, sizeKB } = payload
     return (
@@ -156,10 +162,11 @@ function MessageItem({ type, isLoading, payload, message = '', role = 'user', st
 
   const html = marked.parse(message) as string
   return (
-    <div
-      className={`${styles.messageItem} ${styles[role]} ${isLoading ? styles.loading : ''}`}
-      dangerouslySetInnerHTML={{ __html: DOMPurify?.sanitize(html) }}
-    >
+    <div className={`${styles.messageItem} ${styles[role]} ${isLoading ? styles.loading : ''}`}>
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify?.sanitize(html) }} />
+      {modelName && role === 'system' && !isLoading && (
+        <span className={styles.modelBadge}>{MODEL_DISPLAY_NAMES[modelName] || modelName}</span>
+      )}
     </div>
   )
 }

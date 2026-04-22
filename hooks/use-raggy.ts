@@ -81,6 +81,17 @@ function useRaggy() {
           break
         }
 
+        case "model": {
+          setMessages(prev =>
+            prev.map(msg =>
+              msg.id === assistantMessageId
+                ? { ...msg, modelName: event.name }
+                : msg
+            )
+          )
+          break
+        }
+
         case "resume_card": {
           setMessages(prev => [
             ...prev,

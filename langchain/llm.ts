@@ -8,31 +8,40 @@ export function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { 
   model = !isDev ? 'ollama' : model
   console.log('using model', model);
   const temperature = 0.5;
-  // if (isDev) {
-  //   return new Ollama({
-  //     baseUrl: process.env.LLM_URL || 'http://localhost:11434',`
-  //     model: 'llama3.1:8b', // 'qwen3:8b', // 'phi:latest',
-  //     temperature,
-  //   });
-  // }
+
   if (model === 'openai') {
-    return new ChatOpenAI({
-      model: 'gpt-4.1-mini',
-      temperature,
-      streaming: true,
-    });
+    const modelName = "@cf/ibm-granite/granite-4.0-h-micro";
+    return {
+      llm: new ChatOpenAI({
+        modelName,
+        apiKey: process.env.CLOUDFLARE_WORKER_AI_KEY,
+        configuration: {
+          baseURL: "https://api.cloudflare.com/client/v4/accounts/0bb9f597cbc00823ca74973e563f9faa/ai/v1",
+        },
+      }),
+      modelName,
+    };
+
   } else if (model === 'gemini') {
-    return new ChatGoogleGenerativeAI({
-      model: "gemini-2.0-flash",
-      temperature,
-      maxOutputTokens: 1024,
-    });
+    const modelName = "gemini-2.0-flash";
+    return {
+      llm: new ChatGoogleGenerativeAI({
+        model: modelName,
+        temperature,
+        maxOutputTokens: 1024,
+      }),
+      modelName,
+    };
   }
 
-  return new Ollama({
-    baseUrl: process.env.LLM_URL || 'http://localhost:11434',
-    model: 'llama3.1:8b', // 'qwen3:8b', // 'phi:latest',
-    temperature
-  });
+  const modelName = "llama3.1:8b";
+  return {
+    llm: new Ollama({
+      baseUrl: process.env.LLM_URL || 'http://localhost:11434',
+      model: modelName,
+      temperature
+    }),
+    modelName,
+  };
 
 }
