@@ -341,3 +341,36 @@
   margin-top: 1rem;
   /* justify-content: space-between; */
 }
+
+/* Blog images (hero in posts) */
+.blogProse img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+/* Author bio (E-E-A-T) */
+.blogAuthor {
+  margin-top: 3rem;
+  padding: 1.5rem 1.25rem;
+  border-top: 1px solid rgba(var(--foreground-rgb), 0.15);
+  border-radius: 0 0 12px 12px;
+}
+
+.blogAuthorName {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.blogAuthorBio {
+  font-size: 0.9rem;
+  color: rgba(var(--foreground-rgb), 0.7);
+  line-height: 1.6;
+}
+
+.blogAuthorLink {
+  font-size: 0.9rem;
+}

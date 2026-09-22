@@ -1,0 +1,21 @@
+# Ravi Singh — AI Engineer & Full-Stack Developer
+
+> Personal site of Ravi Singh: production RAG systems, agentic AI, Next.js full-stack apps, and practical backend engineering. Portfolio, projects, and a tech blog with guides on LLMs, RAG, API design, and web performance.
+
+## Main sections
+
+- [Portfolio / Home](https://www.socialamigo.in): About, skills, experience, projects, and contact for Ravi Singh.
+- [Blog](https://www.socialamigo.in/blog): All tech articles — RAG, LLMs, LangChain, LlamaIndex, Redis rate limiting, Next.js SEO, and backend fundamentals.
+
+## Key articles
+
+- [RAG vs Fine-Tuning: How to Choose the Right Approach](https://www.socialamigo.in/blog/rag-vs-fine-tuning): When retrieval beats training — cost, latency, accuracy, and a combined strategy.
+- [LangChain vs LlamaIndex: Which RAG Framework in 2026?](https://www.socialamigo.in/blog/langchain-vs-llamaindex): Framework comparison table and decision guidance for RAG apps.
+- [API Rate Limiting with Redis: A Practical Guide](https://www.socialamigo.in/blog/api-rate-limiting-redis): Token buckets, sliding windows, 429 handling, and where to enforce limits.
+- [Next.js SEO in 2026: Technical Checklist That Works](https://www.socialamigo.in/blog/nextjs-seo-checklist): Metadata, canonicals, sitemaps, structured data, and AI-search readiness.
+- [RAG Chunking Strategies: How to Split Documents](https://www.socialamigo.in/blog/rag-chunking-strategies): Fixed, recursive, semantic, and agentic chunking with tuned defaults.
+- [Building a RAG App with LlamaIndex](https://www.socialamigo.in/blog/building-rag): A 15-minute open-source RAG walkthrough.
+
+## Author
+
+Ravi Singh is an AI engineer building production RAG pipelines and full-stack applications. Contact via [LinkedIn](https://www.linkedin.com/in/ravi-ksingh/), [GitHub](https://github.com/raysk4ever), or [X](https://twitter.com/raysk4ever). Also publishes on [TechGama on Medium](https://techgama.medium.com).

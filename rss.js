@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import RSS from "rss";
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+const RSS = require("rss");
 
 const siteUrl = "https://www.socialamigo.in";
 const BLOG_DIR = path.join(process.cwd(), "pages/content/blog");
@@ -14,7 +14,7 @@ const feed = new RSS({
 
 const files = fs.readdirSync(BLOG_DIR);
 
-files.forEach(file => {
+files.forEach((file) => {
   if (!file.endsWith(".md")) return;
 
   const slug = file.replace(".md", "");

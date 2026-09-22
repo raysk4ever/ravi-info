@@ -57,7 +57,7 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 
-const BLOG_DIR = path.join(process.cwd(), "content/blog");
+const BLOG_DIR = path.join(process.cwd(), "pages/content/blog");
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -70,10 +70,12 @@ module.exports = {
   changefreq: "daily",
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: ["/admin/*", "/login", "/register", "/api/*", "/privacy-policy"],
+  exclude: ["/admin/*", "/login", "/register", "/api/*", "/privacy-policy", "/blog/external/*"],
 
   additionalPaths: async (config) => {
     const paths = [
+      await config.transform(config, '/'),
+      await config.transform(config, '/blog'),
       await config.transform(config, 'https://budget.socialamigo.in'),
       await config.transform(config, 'https://base64.socialamigo.in'),
       await config.transform(config, 'https://xpense.socialamigo.in'),
@@ -98,9 +100,37 @@ module.exports = {
           priority: 0.7,
           lastmod: data.date ? new Date(data.date).toISOString() : undefined,
         });
+
+        // Tag pages (only tags that exist on a post)
+        if (Array.isArray(data.tags)) {
+          data.tags.forEach((tag) => {
+            paths.push({
+              loc: `/tags/${tag}`,
+              changefreq: "weekly",
+              priority: 0.5,
+              lastmod: data.date ? new Date(data.date).toISOString() : undefined,
+            });
+          });
+        }
       });
     }
 
     return paths;
+  },
+  robotsTxtOptions: {
+    policies: [
+      { userAgent: '*', allow: '/' },
+      // AI search / citation crawlers (govern citability, always allow)
+      { userAgent: 'OAI-SearchBot', allow: '/' },
+      { userAgent: 'Claude-SearchBot', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      // AI training crawlers (allowed by choice)
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'CCBot', allow: '/' },
+      // Keep API/JSON endpoints out of the index
+      { userAgent: '*', disallow: '/api/' },
+    ],
   },
 };
