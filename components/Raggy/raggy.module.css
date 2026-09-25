@@ -50,39 +50,90 @@
 }
 
 .raggyContainer .header {
-  background-color: rgba(var(--foreground-rgb), 0.06);
+  background-color: rgba(var(--foreground-rgb), 0.03);
   border-bottom: 1px solid rgba(var(--foreground-rgb), 0.08);
   padding: 10px 1rem;
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   align-items: center;
+  gap: 12px;
   color: rgb(var(--foreground-rgb));
 }
-.raggyContainer .header div:nth-child(1) {
+
+.raggyContainer .header .headerInfo {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
+  min-width: 0;
+}
+
+.raggyContainer .header .headerTitle {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+}
+
+.raggyContainer .header .desc {
+  font-size: 0.65rem;
+  line-height: 1.35;
+  color: rgba(var(--foreground-rgb), 0.45);
 }
 
 .raggyContainer .header div.actions {
   display: flex;
-  gap: 10px;
   align-items: center;
-  width: 10rem;
-  cursor: pointer;
-  transition: all .2s ease-in-out;
   justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.raggyContainer .header div.actions:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
+.raggyContainer .header div.newChat,
+.raggyContainer .header a.expandChat,
+.raggyContainer .header a.backChat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  min-width: 106px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--foreground-rgb), 0.2);
+  background-color: transparent;
+  color: rgba(var(--foreground-rgb), 0.8);
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .15s ease;
 }
 
-.raggyContainer .header div.actions:active {
-  transform: scale(0.95);
+.raggyContainer .header div.newChat:hover,
+.raggyContainer .header a.expandChat:hover,
+.raggyContainer .header a.backChat:hover {
+  background-color: rgba(var(--foreground-rgb), 0.07);
+  border-color: rgba(var(--foreground-rgb), 0.35);
+  color: rgb(var(--foreground-rgb));
+}
+
+.raggyContainer .header div.newChat:active,
+.raggyContainer .header a.expandChat:active,
+.raggyContainer .header a.backChat:active {
+  transform: scale(0.96);
+}
+
+.raggyContainer .header .expandIcon,
+.raggyContainer .header .newChatIcon,
+.raggyContainer .header .backIcon {
+  font-size: 0.85rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.raggyContainer .header a.expandChat,
+.raggyContainer .header a.backChat {
+  text-decoration: none;
 }
 .raggyContainer .raggyTitle {
   font-size: 3rem;
@@ -144,6 +195,45 @@
   gap: 1rem;
   padding: 0px 1rem;
   overflow-y: auto;
+}
+
+.messagesWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.goBottomBtn {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(var(--foreground-rgb), 0.18);
+  border-radius: 999px;
+  background: rgba(var(--background-start-rgb), 0.92);
+  color: rgb(var(--foreground-rgb));
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+}
+.goBottomBtn:hover {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+.goBottomBtn:active {
+  transform: scale(0.96);
 }
 
 .messageItem {
@@ -345,19 +435,208 @@
   text-decoration: underline;
 }
 
-/* Theme-specific tweaks */
+/* ── Theme-specific tweaks ─────────────────────────── */
+
+/* Message bubbles: crisp, clearly readable in light mode */
+.messageItem {
+  border: 1px solid transparent;
+}
+
+@media (max-width: 520px) {
+  .raggyContainer .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .raggyContainer .header .desc {
+    display: none;
+  }
+  .raggyContainer .header div.actions {
+    justify-content: space-between;
+  }
+  .raggyContainer .header div.newChat,
+  .raggyContainer .header a.expandChat,
+  .raggyContainer .header a.backChat {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 @media (prefers-color-scheme: light) {
+  .messageItem {
+    background-color: #ffffff;
+    border-color: rgba(15, 15, 20, 0.16);
+    color: rgba(15, 15, 20, 0.92);
+    box-shadow: 0 1px 3px rgba(15, 15, 20, 0.1),
+      0 4px 16px rgba(15, 15, 20, 0.06);
+  }
+  .raggyContainer::before {
+    background: radial-gradient(
+      rgba(78, 119, 216, 0.1),
+      rgba(78, 119, 216, 0)
+    );
+  }
+  .raggyContainer::after {
+    background: radial-gradient(
+      rgba(80, 200, 120, 0.12),
+      rgba(80, 200, 120, 0)
+    );
+  }
+  .statusLoader {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+  .messageItem.user {
+    background-color: #e3ecfc;
+    border-color: rgba(78, 119, 216, 0.4);
+    color: #1d2d52;
+  }
   .messageItem a {
     color: #3360b8;
+  }
+  .messageItem.loading {
+    border-color: rgba(15, 15, 20, 0.08);
   }
   .raggyContainer .raggyPlaceholder {
     color: rgba(0, 0, 0, 0.35);
   }
+  .suggestions span {
+    color: rgba(15, 15, 20, 0.75);
+    border-color: rgba(15, 15, 20, 0.25);
+  }
+  .inputContainer input {
+    background-color: #ffffff;
+    border-color: rgba(15, 15, 20, 0.18);
+  }
+  .messageItem blockquote {
+    border-left-color: rgba(15, 15, 20, 0.25);
+  }
+  .messageItem pre {
+    background: rgba(15, 15, 20, 0.07);
+  }
+}
+
+html[data-theme="light"] .messageItem {
+  background-color: #ffffff;
+  border-color: rgba(15, 15, 20, 0.16);
+  color: rgba(15, 15, 20, 0.92);
+  box-shadow: 0 1px 3px rgba(15, 15, 20, 0.1),
+    0 4px 16px rgba(15, 15, 20, 0.06);
+}
+
+html[data-theme="light"] .raggyContainer::before {
+  background: radial-gradient(
+    rgba(78, 119, 216, 0.1),
+    rgba(78, 119, 216, 0)
+  );
+}
+
+html[data-theme="light"] .raggyContainer::after {
+  background: radial-gradient(
+    rgba(80, 200, 120, 0.12),
+    rgba(80, 200, 120, 0)
+  );
+}
+
+html[data-theme="light"] .statusLoader {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html[data-theme="light"] .messageItem.user {
+  background-color: #e3ecfc;
+  border-color: rgba(78, 119, 216, 0.4);
+  color: #1d2d52;
+}
+
+html[data-theme="light"] .messageItem a {
+  color: #3360b8;
+}
+
+html[data-theme="light"] .raggyContainer .raggyPlaceholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="light"] .suggestions span {
+  color: rgba(15, 15, 20, 0.75);
+  border-color: rgba(15, 15, 20, 0.25);
+}
+
+html[data-theme="light"] .inputContainer input {
+  background-color: #ffffff;
+  border-color: rgba(15, 15, 20, 0.18);
 }
 
 @media (prefers-color-scheme: dark) {
+  .messageItem {
+    border-color: rgba(240, 240, 245, 0.08);
+  }
+  .messageItem.user {
+    background-color: rgba(78, 119, 216, 0.22);
+    border-color: rgba(120, 150, 255, 0.35);
+  }
   .messageItem a {
     color: #6b9ef5;
   }
+}
+
+html[data-theme="dark"] .messageItem {
+  background-color: rgba(240, 240, 245, 0.06);
+  border-color: rgba(240, 240, 245, 0.09);
+  color: rgba(240, 240, 245, 0.9);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .statusLoader {
+  background: rgba(240, 240, 245, 0.04) !important;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .statusSteps .statusLabel {
+  color: rgba(240, 240, 245, 0.62);
+}
+html[data-theme="dark"] .statusStep.statusActive .statusLabel {
+  color: rgba(240, 240, 245, 0.82);
+}
+html[data-theme="dark"] .statusStep.statusDone .statusLabel,
+html[data-theme="dark"] .statusStep.statusDone .statusIcon {
+  color: rgba(240, 240, 245, 0.5);
+}
+
+html[data-theme="dark"] .messageItem.user {
+  background-color: rgba(78, 119, 216, 0.22);
+  border-color: rgba(120, 150, 255, 0.35);
+}
+
+html[data-theme="dark"] .messageItem a {
+  color: #6b9ef5;
+}
+
+html[data-theme="dark"] .suggestions span {
+  color: rgba(240, 240, 245, 0.72);
+  border-color: rgba(240, 240, 245, 0.22);
+}
+html[data-theme="dark"] .suggestions span:hover {
+  background-color: rgba(240, 240, 245, 0.08);
+  color: rgb(240, 240, 245);
+  border-color: rgba(240, 240, 245, 0.38);
+}
+
+html[data-theme="dark"] .inputContainer input {
+  background-color: rgba(240, 240, 245, 0.06);
+  border-color: rgba(240, 240, 245, 0.18);
+  color: rgb(240, 240, 245);
+  caret-color: rgb(240, 240, 245);
+}
+html[data-theme="dark"] .inputContainer input::placeholder {
+  color: rgba(240, 240, 245, 0.4);
+}
+html[data-theme="dark"] .inputContainer input:focus {
+  border-color: #6b9ef5;
+  box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.2);
+}
+
+html[data-theme="dark"] .inputContainer button {
+  background: linear-gradient(135deg, #4e77d8, #3a5fc0);
+  color: #ffffff;
+  border: 1px solid rgba(150, 180, 255, 0.35);
 }
 

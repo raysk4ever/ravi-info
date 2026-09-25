@@ -11,6 +11,10 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  webpack: (config) => {
+    config.cache = false;
+    return config;
+  },
   async headers() {
     return [
       {

@@ -1,41 +1,31 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const SITE_URL = 'https://www.socialamigo.in'
-const OG_IMAGE = `${SITE_URL}/ravi.png`
-
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head>
-        {/* Global OG defaults */}
-        <meta property="og:site_name" content="Ravi Singh — AI Engineer" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta property="og:locale" content="en_US" />
-
-        {/* Twitter defaults */}
-        <meta name="twitter:site" content="@raysk4ever" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={OG_IMAGE} />
-
-        {/* RSS */}
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="Ravi Singh Blog RSS Feed"
-          href={`${SITE_URL}/rss.xml`}
-        />
-
-        {/* Favicon variants */}
-        <link rel="icon" href="/cloud.png" />
-        <link rel="apple-touch-icon" href="/cloud.png" />
-
-        {/* Theme color */}
-        <meta name="theme-color" content="#4e77d8" />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export default class SiteDocument extends Document {
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();`,
+            }}
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }

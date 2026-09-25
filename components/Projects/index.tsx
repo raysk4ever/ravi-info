@@ -18,7 +18,7 @@ const projects = [
   {
     name: 'Gama AI — RAG Chatbot',
     desc: 'Agentic RAG chatbot built with LangChain, FAISS vector store, and streaming responses. Uses retrieval-augmented generation to answer questions about my portfolio.',
-    demo: '#raggy-container',
+    demo: '/chat',
     tech: [GiArtificialHive, SiOpenai, SiNextdotjs, SiTypescript],
   },
   {

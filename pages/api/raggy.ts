@@ -83,6 +83,11 @@ export default async function handler(
     res.end()
   } catch (err) {
     console.error(err)
+    writeEvent(res, {
+      type: "text",
+      delta: "😅 My AI brain glitched for a second — the models are having a moment. Please try again in a minute!",
+    })
+    writeEvent(res, { type: "end" })
     res.status(500).end("Error running RAG pipeline")
   }
 }

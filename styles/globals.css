@@ -1,3 +1,12 @@
+/* Tailwind (utilities only, no preflight) — powers shadcn/ui components */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@source "../components";
+@source "../pages";
+@source "../lib";
+
 :root {
   --max-width: 1200px;
   --border-radius: 12px;
@@ -12,6 +21,7 @@
   --background-end-rgb: 255, 255, 255;
 
   --primary: #4e77d8;
+  --primary-rgb: 78, 119, 216;
   --primary-light: #6b8fef;
   --accent: #50c878;
   --accent-light: #6bdfa0;
@@ -48,7 +58,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --foreground-rgb: 240, 240, 245;
     --background-start-rgb: 10, 10, 15;
     --background-end-rgb: 10, 10, 15;
@@ -71,10 +81,45 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+:root[data-theme="dark"] {
+  --foreground-rgb: 240, 240, 245;
+  --background-start-rgb: 10, 10, 15;
+  --background-end-rgb: 10, 10, 15;
+
+  --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+  --secondary-glow: linear-gradient(
+    to bottom right,
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0.3)
+  );
+
+  --tile-start-rgb: 2, 13, 46;
+  --tile-end-rgb: 2, 5, 19;
+
+  --callout-rgb: 20, 20, 25;
+  --callout-border-rgb: 108, 108, 108;
+  --card-rgb: 100, 100, 100;
+  --card-border-rgb: 200, 200, 200;
+}
+
+:root[data-theme="light"] {
+  --foreground-rgb: 15, 15, 20;
+  --background-start-rgb: 250, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 html {
@@ -94,18 +139,13 @@ body {
   background: rgb(var(--background-start-rgb));
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 /* ═══════════════════════════════════════
    Scroll-reveal animation classes
    ═══════════════════════════════════════ */
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(12px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -116,7 +156,7 @@ a {
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateX(-16px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -127,7 +167,7 @@ a {
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateX(16px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -138,7 +178,7 @@ a {
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.97);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -147,28 +187,40 @@ a {
   transform: scale(1);
 }
 
-/* Staggered children animation */
+/* Staggered children reveal (animation-based so child hover/transition styles stay free) */
 .stagger-children > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.stagger-children.visible > *:nth-child(1)  { transition-delay: 0.05s; }
-.stagger-children.visible > *:nth-child(2)  { transition-delay: 0.1s; }
-.stagger-children.visible > *:nth-child(3)  { transition-delay: 0.15s; }
-.stagger-children.visible > *:nth-child(4)  { transition-delay: 0.2s; }
-.stagger-children.visible > *:nth-child(5)  { transition-delay: 0.25s; }
-.stagger-children.visible > *:nth-child(6)  { transition-delay: 0.3s; }
-.stagger-children.visible > *:nth-child(7)  { transition-delay: 0.35s; }
-.stagger-children.visible > *:nth-child(8)  { transition-delay: 0.4s; }
-.stagger-children.visible > *:nth-child(9)  { transition-delay: 0.45s; }
-.stagger-children.visible > *:nth-child(10) { transition-delay: 0.5s; }
-.stagger-children.visible > *:nth-child(11) { transition-delay: 0.55s; }
-.stagger-children.visible > *:nth-child(12) { transition-delay: 0.6s; }
-.stagger-children.visible > * {
   opacity: 1;
   transform: translateY(0);
+}
+.stagger-children:not(.visible) > * {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.stagger-children.visible > * {
+  animation: childRevealIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.stagger-children.visible > *:nth-child(1)  { animation-delay: 0.05s; }
+.stagger-children.visible > *:nth-child(2)  { animation-delay: 0.1s; }
+.stagger-children.visible > *:nth-child(3)  { animation-delay: 0.15s; }
+.stagger-children.visible > *:nth-child(4)  { animation-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(5)  { animation-delay: 0.25s; }
+.stagger-children.visible > *:nth-child(6)  { animation-delay: 0.3s; }
+.stagger-children.visible > *:nth-child(7)  { animation-delay: 0.35s; }
+.stagger-children.visible > *:nth-child(8)  { animation-delay: 0.4s; }
+.stagger-children.visible > *:nth-child(9)  { animation-delay: 0.45s; }
+.stagger-children.visible > *:nth-child(10) { animation-delay: 0.5s; }
+.stagger-children.visible > *:nth-child(11) { animation-delay: 0.55s; }
+.stagger-children.visible > *:nth-child(12) { animation-delay: 0.6s; }
+
+@keyframes childRevealIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ═══════════════════════════════════════
@@ -197,12 +249,26 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  html:not([data-theme="light"]) {
     color-scheme: dark;
   }
   .socket\.io-icon, .three\.js-icon, .next\.js-icon {
     color: #fff !important;
   }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] .socket\.io-icon,
+html[data-theme="dark"] .three\.js-icon,
+html[data-theme="dark"] .next\.js-icon {
+  color: #fff !important;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 .theme-toggle {
@@ -216,4 +282,127 @@ a {
 }
 .theme-toggle:hover {
   opacity: 1;
+}
+/* ═══════════════════════════════════════
+   shadcn/ui design tokens (blog + shared UI)
+   Matched to site palette: blue primary + green accent
+   ═══════════════════════════════════════ */
+
+:root {
+  --blg-background: #fafafb;
+  --blg-foreground: #0f0f14;
+  --blg-card: #ffffff;
+  --blg-card-foreground: #0f0f14;
+  --blg-popover: #ffffff;
+  --blg-popover-foreground: #0f0f14;
+  --blg-primary: #4e77d8;
+  --blg-primary-foreground: #ffffff;
+  --blg-secondary: #e9edf5;
+  --blg-secondary-foreground: #2b3a55;
+  --blg-muted: #f0f2f6;
+  --blg-muted-foreground: #5e6777;
+  --blg-accent: #1c8f57;
+  --blg-accent-foreground: #ffffff;
+  --blg-destructive: #dc2626;
+  --blg-destructive-foreground: #ffffff;
+  --blg-border: #e4e7ed;
+  --blg-input: #e4e7ed;
+  --blg-ring: #4e77d8;
+  --blg-radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --blg-background: #0a0d14;
+    --blg-foreground: #eef1f6;
+    --blg-card: #11151f;
+    --blg-card-foreground: #eef1f6;
+    --blg-popover: #11151f;
+    --blg-popover-foreground: #eef1f6;
+    --blg-primary: #8fb0ff;
+    --blg-primary-foreground: #101a36;
+    --blg-secondary: #2a3142;
+    --blg-secondary-foreground: #eef1f6;
+    --blg-muted: #1b2130;
+    --blg-muted-foreground: #9aa4b9;
+    --blg-accent: #4ade80;
+    --blg-accent-foreground: #062712;
+    --blg-destructive: #f87171;
+    --blg-destructive-foreground: #ffffff;
+    --blg-border: #232b3b;
+    --blg-input: #232b3b;
+    --blg-ring: #8fb0ff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --blg-background: #0a0d14;
+  --blg-foreground: #eef1f6;
+  --blg-card: #11151f;
+  --blg-card-foreground: #eef1f6;
+  --blg-popover: #11151f;
+  --blg-popover-foreground: #eef1f6;
+  --blg-primary: #8fb0ff;
+  --blg-primary-foreground: #101a36;
+  --blg-secondary: #2a3142;
+  --blg-secondary-foreground: #eef1f6;
+  --blg-muted: #1b2130;
+  --blg-muted-foreground: #9aa4b9;
+  --blg-accent: #4ade80;
+  --blg-accent-foreground: #062712;
+  --blg-destructive: #f87171;
+  --blg-destructive-foreground: #ffffff;
+  --blg-border: #232b3b;
+  --blg-input: #232b3b;
+  --blg-ring: #8fb0ff;
+}
+
+:root[data-theme="light"] {
+  --blg-background: #fafafb;
+  --blg-foreground: #0f0f14;
+  --blg-card: #ffffff;
+  --blg-card-foreground: #0f0f14;
+  --blg-popover: #ffffff;
+  --blg-popover-foreground: #0f0f14;
+  --blg-primary: #4e77d8;
+  --blg-primary-foreground: #ffffff;
+  --blg-secondary: #e9edf5;
+  --blg-secondary-foreground: #2b3a55;
+  --blg-muted: #f0f2f6;
+  --blg-muted-foreground: #5e6777;
+  --blg-accent: #1c8f57;
+  --blg-accent-foreground: #ffffff;
+  --blg-destructive: #dc2626;
+  --blg-destructive-foreground: #ffffff;
+  --blg-border: #e4e7ed;
+  --blg-input: #e4e7ed;
+  --blg-ring: #4e77d8;
+}
+
+@theme inline {
+  --color-background: var(--blg-background);
+  --color-foreground: var(--blg-foreground);
+  --color-card: var(--blg-card);
+  --color-card-foreground: var(--blg-card-foreground);
+  --color-popover: var(--blg-popover);
+  --color-popover-foreground: var(--blg-popover-foreground);
+  --color-primary: var(--blg-primary);
+  --color-primary-foreground: var(--blg-primary-foreground);
+  --color-secondary: var(--blg-secondary);
+  --color-secondary-foreground: var(--blg-secondary-foreground);
+  --color-muted: var(--blg-muted);
+  --color-muted-foreground: var(--blg-muted-foreground);
+  --color-accent: var(--blg-accent);
+  --color-accent-foreground: var(--blg-accent-foreground);
+  --color-destructive: var(--blg-destructive);
+  --color-destructive-foreground: var(--blg-destructive-foreground);
+  --color-border: var(--blg-border);
+  --color-input: var(--blg-input);
+  --color-ring: var(--blg-ring);
+  --radius-sm: calc(var(--blg-radius) - 4px);
+  --radius-md: calc(var(--blg-radius) - 2px);
+  --radius-lg: var(--blg-radius);
+  --radius-xl: calc(var(--blg-radius) + 4px);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 }

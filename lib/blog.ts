@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { getMediumPosts } from "./medium";
+import { readingTime } from "./blog-content";
 
 
 const BLOG_DIR = path.join(process.cwd(), "pages/content/blog");
@@ -17,7 +18,7 @@ export function getAllPosts() {
   return files.map((file) => {
     const slug = file.replace(".md", "");
     const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
-    const { data } = matter(raw);
+    const { data, content } = matter(raw);
 
     return {
       slug,
@@ -25,6 +26,8 @@ export function getAllPosts() {
       description: data.description,
       date: data.date,
       tags: data.tags || [],
+      image: data.image || null,
+      readTime: readingTime(content),
     };
   });
 }
@@ -36,6 +39,7 @@ export function getPost(slug: string) {
   return {
     slug,
     content,
+    readTime: readingTime(content),
     ...data,
   };
 }
@@ -67,6 +71,8 @@ export async function getAllBlogEntries() {
     source: "medium",
     url: `/blog/external/${slugify(p.title)}`,
     externalUrl: p.link,
+    image: null,
+    readTime: readingTime(p.snippet || ""),
     date: new Date(p.pubDate).toISOString(),
   }));
 

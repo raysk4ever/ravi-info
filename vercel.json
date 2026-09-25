@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "pages/api/raggy.ts": {
+      "maxDuration": 60
+    }
+  }
+}

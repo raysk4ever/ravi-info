@@ -70,6 +70,51 @@
   transition: transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: 0.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(var(--foreground-rgb), 0.72);
+  align-self: center;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.themeToggle:hover {
+  background: rgba(var(--primary-rgb), 0.1);
+  color: rgb(var(--foreground-rgb));
+  transform: translateY(-1px);
+}
+
+.themeToggle:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid rgb(var(--primary-rgb));
+  outline-offset: 2px;
+}
+
+html[data-theme="light"] .themeToggle {
+  border: 1px solid rgba(var(--primary-rgb), 0.14);
+  background: rgba(var(--primary-rgb), 0.05);
+}
+
+html[data-theme="light"] .themeToggle:hover {
+  background: rgba(var(--primary-rgb), 0.14);
+  border-color: rgba(var(--primary-rgb), 0.4);
+}
+
+html[data-theme="dark"] .themeToggle:hover {
+  background: rgba(143, 176, 255, 0.12);
+}
 .aiButton:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(78, 119, 216, 0.35);
@@ -158,10 +203,20 @@
     text-align: center;
     padding: 0.75rem 1rem;
   }
+
+  .themeToggle {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .nav {
     border-bottom-color: rgba(255, 255, 255, 0.06);
   }
+}
+
+html[data-theme="dark"] .nav {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
 }

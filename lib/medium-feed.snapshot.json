@@ -1,0 +1,50 @@
+[
+ {
+  "title": "5 Backend Fundamentals That Outlive Every Framework Hype Cycle",
+  "link": "https://techgama.medium.com/5-backend-fundamentals-that-outlive-every-framework-hype-cycle-0af8f88af09a",
+  "pubDate": "2026-09-22T13:34:40.000Z",
+  "snippet": "Each new stack promises to fix the last one. Your real bugs were never in the framework\u200a\u2014\u200athey\u2019re still in the fundamentals.Every couple of years, the backend world announces the f..."
+ },
+ {
+  "title": "Your AI Coding Agent Writes 1,000 Lines a Minute. That\u2019s the Problem.",
+  "link": "https://techgama.medium.com/your-ai-coding-agent-writes-1-000-lines-a-minute-thats-the-problem-e7d053b8b367",
+  "pubDate": "2026-09-22T13:31:29.000Z",
+  "snippet": "Speed was never the bottleneck. Judgment is\u200a\u2014\u200aand it just made code review the new\u00a0queue.Teams keep bragging about agent throughput. Ten PRs a day. A feature that used to take a sp..."
+ },
+ {
+  "title": "Meet Ollama\u200a\u2014\u200aRun Powerful LLMs on Your Laptop for Free",
+  "link": "https://techgama.medium.com/meet-ollama-run-powerful-llms-on-your-laptop-for-free-e1b3af29b6b6",
+  "pubDate": "2025-12-29T16:54:52.000Z",
+  "snippet": "Meet Ollama\u200a\u2014\u200aRun Powerful LLMs on Your Laptop for\u00a0FreeOLLAMA\u200a\u2014\u200aFree open source\u00a0LLMHave you ever wanted to use AI models like ChatGPT, but without paying per token, without intern..."
+ },
+ {
+  "title": "I Built a Portfolio RAG in 15 Minutes\u200a\u2014\u200aHere\u2019s How You Can Build One Too (LlamaIndex + FAISS + Next.",
+  "link": "https://techgama.medium.com/i-built-a-portfolio-rag-in-15-minutes-heres-how-you-can-build-one-too-llamaindex-faiss-next-badbc8c0bf91",
+  "pubDate": "2025-12-28T11:15:07.000Z",
+  "snippet": "I Built a Portfolio RAG in 15 Minutes\u200a\u2014\u200aHere\u2019s How You Can Build One Too (LlamaIndex + FAISS +\u00a0Next.js)Turn your portfolio into a conversational AI using Retrieval-Augmented Genera..."
+ },
+ {
+  "title": "Understanding Kadane\u2019s Algorithm for Maximum Subarray",
+  "link": "https://techgama.medium.com/understanding-kadanes-algorithm-for-maximum-subarray-e279df52e7e6",
+  "pubDate": "2023-07-23T10:56:05.000Z",
+  "snippet": "If you want to Master Maximum Subarray Sum Problem, you are in the right\u00a0place!Kadane\u2019s Algorithm is a popular and efficient algorithm used to find the maximum sum of a subarray wi..."
+ },
+ {
+  "title": "Getting started with Three.js",
+  "link": "https://techgama.medium.com/getting-started-with-three-js-bdf707573173",
+  "pubDate": "2023-06-20T12:08:40.000Z",
+  "snippet": "Want to build 3D Models/Games with just javascript? Don\u2019t worry, You can! with Three.js you can actually create 3d computer graphics.Today we are going to check out Three.js. We ar..."
+ },
+ {
+  "title": "Getting Started with Node.js + Express",
+  "link": "https://techgama.medium.com/getting-started-with-node-js-express-4dfb7c26a2e8",
+  "pubDate": "2023-06-04T17:18:33.000Z",
+  "snippet": "Node.js is a javascript runtime that is built on top of Chrome\u2019s V8 Engine. It is very popular and used in various big tech companies.Today we will be going to learn how can we cre..."
+ },
+ {
+  "title": "Binary Tree\u200a\u2014\u200aDFS Traversing",
+  "link": "https://techgama.medium.com/binary-tree-dfs-traversing-628beae39d26",
+  "pubDate": "2023-06-04T10:06:50.000Z",
+  "snippet": "Binary Tree\u200a\u2014\u200aDFS TraversingA Binary tree is a data structure composed of nodes, each having at most two children. It is widely used in computer science and programming for various..."
+ }
+]
