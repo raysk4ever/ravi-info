@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@/styles/Home.module.css";
 import { FaGithub, FaStackOverflow } from "react-icons/fa";
-import { SiLinkedin, SiMedium } from "react-icons/si";
+import { SiLinkedin, SiMedium, SiYoutube } from "react-icons/si";
 import Raggy from "@/components/Raggy";
 
 const socials = [
@@ -9,6 +9,7 @@ const socials = [
   { icon: FaStackOverflow, url: "https://stackoverflow.com/users/11216915/ravi-singh", label: "StackOverflow", color: "#EC761E" },
   { icon: SiLinkedin, url: "https://www.linkedin.com/in/ravi-ksingh/", label: "LinkedIn", color: "#0177B5" },
   { icon: SiMedium, url: "https://techgama.medium.com/", label: "Medium" },
+  { icon: SiYoutube, url: "https://www.youtube.com/@classietime", label: "YouTube", color: "#FF0000" },
 ];
 
 const floatingWords = [

@@ -69,10 +69,10 @@ function buildDocs(sections) {
   const summary = (sections['SUMMARY'] || []).join(' ').trim();
   docs.push(
     new Document({
-      pageContent: clean(`Name: ${name}\n\nProfessional Summary: ${summary}`),
+      pageContent: clean(`Name: ${name}\n\nProfessional Summary: ${summary}\n\nOnline: YouTube channel @classietime — https://www.youtube.com/@classietime`),
       metadata: {
         type: 'profile',
-        tags: ['Who is Ravi Singh?', 'personal', 'summary', 'Ravi Singh'],
+        tags: ['Who is Ravi Singh?', 'personal', 'summary', 'Ravi Singh', 'youtube'],
         last_updated: '2026-09-26',
       },
     })
@@ -111,6 +111,19 @@ function buildDocs(sections) {
       metadata: {
         type: 'education',
         tags: ['education', 'degree', 'university'],
+        last_updated: '2026-09-26',
+      },
+    })
+  );
+
+  docs.push(
+    new Document({
+      pageContent: clean(
+        `Side Projects & Hobbies: Ravi runs a YouTube channel called Classie Time (@classietime, https://www.youtube.com/@classietime) where he shares tech content, tutorials, and AI/LLM topics.`
+      ),
+      metadata: {
+        type: 'other',
+        tags: ['youtube', 'channel', 'classietime', 'side project', 'hobby', 'videos'],
         last_updated: '2026-09-26',
       },
     })
