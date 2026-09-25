@@ -117,6 +117,7 @@
   white-space: nowrap;
   margin-top: 1rem;
   scrollbar-width: none;
+  overscroll-behavior: contain;
 }
 
 .suggestions::-webkit-scrollbar {
@@ -144,6 +145,7 @@
   gap: 1rem;
   padding: 0px 1rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .messageItem {
