@@ -1,0 +1,33 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: R
+        - generic [ref=e11]: Engineering notes + Ravi Singh
+      - generic [ref=e12]: Observability / 01
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: Traces, not logs
+        - heading "OpenTelemetry for RAG Pipelines" [level=1] [ref=e16]: OpenTelemetryfor RAG Pipelines
+        - generic [ref=e17]: Time every span from query embedding to first token, then set a p95 budget for each stage.
+        - generic [ref=e18]:
+          - generic [ref=e19]: OPENTELEMETRY
+          - generic [ref=e20]: TypeScript
+          - generic [ref=e21]: LLM TRACING
+          - generic [ref=e22]: LATENCY
+          - generic [ref=e23]: SPANS
+      - generic [ref=e24]:
+        - heading "Span tree — 3412ms" [level=3] [ref=e25]
+        - generic [ref=e27]:
+          - generic [ref=e28]: rag.retrieve
+          - generic [ref=e29]: 640ms
+        - generic [ref=e33]:
+          - generic [ref=e34]: rag.rerank
+          - generic [ref=e35]: 1450ms
+        - generic [ref=e39]:
+          - generic [ref=e40]: llm.generate
+          - generic [ref=e41]: 1080ms
+        - generic [ref=e44]: gen_ai.usage.input_tokens 1180 gen_ai.usage.output_tokens 240 rag.retrieved.count 5 rag.top_score 0.82
+  - generic [ref=e45]:
+    - generic [ref=e46]: RAG / Observability / Tracing
+    - generic [ref=e48]: socialamigo.in
