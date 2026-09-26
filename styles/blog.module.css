@@ -217,6 +217,13 @@
 @media (min-width: 1080px) {
   .blogToc {
     display: block;
+    /* A sticky element can only travel inside its own parent's box. The parent
+       row uses align-items:flex-start, which would leave this at its content
+       height (~370px) next to a ~5900px article - so the sticky child would
+       have no room to move and would scroll away regardless. Stretching this
+       wrapper to the full row height is invisible, since it only sets width,
+       and gives .blogTocInner the travel room it needs. */
+    align-self: stretch;
   }
 }
 
