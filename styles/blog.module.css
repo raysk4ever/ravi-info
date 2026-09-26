@@ -612,7 +612,11 @@ html[data-theme="dark"] .blogAuthorCard {
   outline: none;
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
-.commentTextarea { resize: vertical; min-height: 5.5rem; line-height: 1.6; margin-top: 0.85rem; }
+.commentTextarea { resize: vertical; min-height: 5.5rem; line-height: 1.6; }
+/* Space between the name row and the comment field. Previously this lived on
+   .commentTextarea, which pushed the textarea down and left the "Comment"
+   label jammed against the name input. */
+.commentForm > .commentField { margin-top: 1.15rem; }
 .commentInput:focus,
 .commentTextarea:focus {
   border-color: var(--primary);
