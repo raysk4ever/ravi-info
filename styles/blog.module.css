@@ -109,7 +109,10 @@
 }
 
 .blogPostHeader {
-  max-width: 760px;
+  /* Full width of the article container. max-width has to be cleared, otherwise
+     it keeps clamping the header to the narrower prose column. */
+  width: 100%;
+  max-width: none;
 }
 
 .blogBack {
