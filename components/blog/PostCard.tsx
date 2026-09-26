@@ -37,12 +37,15 @@ type PostCardProps = {
   post: BlogPostView;
   featured?: boolean;
   priority?: boolean;
+  /** Extra classes for the outer link, e.g. a reveal hook. */
+  className?: string;
 };
 
 export default function PostCard({
   post,
   featured = false,
   priority = false,
+  className,
 }: PostCardProps) {
   const href = post.externalUrl ?? post.url ?? "/blog";
   const isExternal = Boolean(post.externalUrl);
@@ -63,7 +66,9 @@ export default function PostCard({
         <div
           className={cn(
             "relative overflow-hidden",
-            featured ? "aspect-[16/10] md:aspect-[16/10]" : "aspect-[16/9]"
+            featured
+              ? "h-full w-full md:aspect-auto"
+              : "aspect-[16/9]"
           )}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -95,6 +100,10 @@ export default function PostCard({
         </div>
       )}
 
+      {/* CardContent and CardFooter must share one wrapper. In the featured
+          2-column grid they were three siblings, so the footer wrapped onto a
+          second row and landed under the image instead of in the text column. */}
+      <div className="flex min-w-0 flex-col">
       <CardContent
         className={cn(
           "flex flex-1 flex-col p-6",
@@ -161,15 +170,18 @@ export default function PostCard({
           <ArrowUpRight className="h-4 w-4" />
         </span>
       </CardFooter>
+      </div>
     </Card>
   );
 
+  const outer = cn("block h-full", className);
+
   return isExternal ? (
-    <a {...linkProps} className="block h-full">
+    <a {...linkProps} className={outer}>
       {content}
     </a>
   ) : (
-    <Link {...linkProps} className="block h-full" aria-label={post.title}>
+    <Link {...linkProps} className={outer} aria-label={post.title}>
       {content}
     </Link>
   );

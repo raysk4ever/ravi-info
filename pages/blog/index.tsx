@@ -109,13 +109,20 @@ export default function Blog({ entries, featured, tags }: any) {
           </section>
         )}
 
-        <section
-          className={`${style.blogSection} reveal`}
-          aria-label="All articles"
-        >
-          <div className={style.blogGrid + " stagger-children"}>
+        {/* The reveal is applied per card, not to this wrapper. The grid holds
+            every post and is ~4500px tall, so an IntersectionObserver with a
+            10% threshold on the container would not fire until you had scrolled
+            most of the way down the page - the first screen looked empty, then
+            every card appeared at once. Each card is its own target now, so
+            they fade in as they are scrolled to. */}
+        <section className={style.blogSection} aria-label="All articles">
+          <div className={style.blogGrid}>
             {entries.map((post: BlogPostView) => (
-              <PostCard key={post.url ?? post.title} post={post} />
+              <PostCard
+                key={post.url ?? post.title}
+                post={post}
+                className={`${style.revealCard} reveal`}
+              />
             ))}
           </div>
         </section>

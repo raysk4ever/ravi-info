@@ -762,3 +762,19 @@ html[data-theme="dark"] .blogAuthorCard {
   .commentItem,
   .likeIconFilled { animation: none; }
 }
+
+/* Per-card reveal for the blog grid. Cards animate in as each one is scrolled
+   to; the small per-index delay keeps a gentle cascade when several of them
+   enter the viewport together. */
+.blogGrid > .revealCard {
+  transition-delay: 0ms;
+}
+.blogGrid > .revealCard:nth-child(2) { transition-delay: 40ms; }
+.blogGrid > .revealCard:nth-child(3) { transition-delay: 80ms; }
+.blogGrid > .revealCard:nth-child(4) { transition-delay: 120ms; }
+.blogGrid > .revealCard:nth-child(5) { transition-delay: 160ms; }
+.blogGrid > .revealCard:nth-child(6) { transition-delay: 200ms; }
+.blogGrid > .revealCard:nth-child(n + 7) { transition-delay: 240ms; }
+@media (prefers-reduced-motion: reduce) {
+  .blogGrid > .revealCard { transition-delay: 0ms; }
+}
