@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import styles from "@/styles/navbar.module.css";
 import useRaggy from "@/hooks/use-raggy";
+import useHashScroll from "@/hooks/use-hash-scroll";
 import ThemeToggle from "@/components/ui/theme-toggle";
 
 export default function Navbar() {
@@ -15,6 +16,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const lastResumeCallRef = useRef(0);
   const RESUME_DEBOUNCE_MS = 2000;
+
+  // "#projects" / "#contact" only exist on "/", so these links always point at
+  // the home page and the hook finishes the scroll once the section is mounted.
+  useHashScroll();
 
   const handleResumeClick = () => {
     const now = Date.now();
@@ -83,18 +88,18 @@ export default function Navbar() {
             >
               Chat
             </Link>
-            <a
-              href="#projects"
+            <Link
+              href="/#projects"
               onClick={() => setMenuOpen(false)}
             >
               Projects
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              href="/#contact"
               onClick={() => setMenuOpen(false)}
             >
               Contact
-            </a>
+            </Link>
             <ThemeToggle className={styles.themeToggle} />
             <button
               className={styles.aiButton}
