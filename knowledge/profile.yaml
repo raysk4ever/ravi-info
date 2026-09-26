@@ -1,0 +1,69 @@
+# Canonical profile for Ravi Singh.
+#
+# This file is the single source of truth used by BOTH the website and the
+# chatbot's RAG index (scripts/build-rag-index.cjs). Edit here, then run:
+#   yarn rag:build
+#
+# Any scalar or list value is indexed, so plain descriptive text works best.
+
+name: Ravi Singh
+title: AI Engineer & Full-Stack Developer
+location: Bangalore, India
+timezone: Asia/Kolkata (IST, UTC+5:30)
+
+summary: >-
+  AI engineer focused on agentic AI, retrieval-augmented generation and
+  production LLM systems. Builds multi-agent systems, RAG pipelines and
+  internal AI tooling with LangChain, LangGraph and MCP, on a modern
+  TypeScript and Python stack. Previously worked at EPAM, Envirya and Tesit.
+
+# ── What he is open to ───────────────────────────────────────────────────
+open_to:
+  roles:
+    - AI Engineer
+    - Senior Software Engineer
+    - Full-Stack Developer
+    - LLM / RAG Engineer
+    - Applied AI Engineer
+  location_flexibility:
+    - Open to remote work
+    - Open to hybrid roles
+    - Willing to relocate for the right role
+    - Available at short notice
+  engagement:
+    - Full-time employment
+    - Contract / freelance
+    - Open-source collaboration
+
+# ── Highlights used for "tell me about yourself" style questions ─────────
+highlights:
+  - Built Gamatron, a no-code AI app builder that generates full applications from natural-language prompts.
+  - Built Gama AI, an agentic RAG chatbot with streaming answers, LangChain, FAISS retrieval and per-message feedback.
+  - Built a LangGraph multi-agent orchestrator with tool calling, shared memory and conditional routing.
+  - Built an MCP tool server exposing file search, code analysis and data retrieval as standard MCP tools.
+  - Runs Classie Time, a YouTube channel publishing AI, LLM and full-stack tutorials.
+  - Shipped production apps including Teasit (social PWA), Hio (realtime chat), OkkJi (Android commerce) and Xpense Wala (expense tracker).
+
+# ── Non-answers the chatbot should know about ───────────────────────────
+boundaries:
+  does_not_know:
+    - Exact salary expectations or compensation numbers
+    - Personal mobile number or home address
+    - Anything not present in the knowledge base or indexed documents
+  note: >-
+    When a question falls outside the indexed context, say plainly that it is
+    not documented yet rather than guessing.
+
+# ── Contact ─────────────────────────────────────────────────────────────
+contact:
+  email: raysk7161@gmail.com
+  phone: "+91-6396180310"
+  website: https://www.socialamigo.in
+  blog: https://www.socialamigo.in/blog
+
+social:
+  github: https://github.com/raysk4ever
+  linkedin: https://www.linkedin.com/in/ravi-ksingh/
+  stackoverflow: https://stackoverflow.com/users/11216915/ravi-singh
+  medium: https://techgama.medium.com/
+  youtube: https://www.youtube.com/@classietime

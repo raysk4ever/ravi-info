@@ -1,0 +1,57 @@
+{
+  "$comment": "Canonical skills list. Rendered by components/Skills and indexed for the chatbot. 'icon' is a key into components/Skills/icons.ts. Run 'yarn rag:build' after editing.",
+  "categories": [
+    {
+      "title": "Agentic AI & LLMs",
+      "summary": "Frameworks and tooling for building agentic systems and LLM-powered applications.",
+      "skills": [
+        { "name": "OpenAI", "icon": "openai", "color": "#10a37f" },
+        { "name": "Gemini", "icon": "gemini", "color": "#4285F4" },
+        { "name": "Ollama", "icon": "ollama", "color": "#8c12b1" },
+        { "name": "LangChain", "icon": "langchain", "color": "#3faf82" },
+        { "name": "LangGraph", "icon": "langgraph", "color": "#3B82F6" },
+        { "name": "MCP", "icon": "mcp", "color": "#10B981" },
+        { "name": "Agentic AI", "icon": "agentic", "color": "#F59E0B" }
+      ]
+    },
+    {
+      "title": "RAG & Data",
+      "summary": "Retrieval pipelines, vector search and data stores.",
+      "skills": [
+        { "name": "LlamaIndex", "icon": "ollama", "color": "#8c12b1" },
+        { "name": "Python", "icon": "python", "color": "#3776AB" },
+        { "name": "FAISS", "icon": "vector", "color": "#4A90D9" },
+        { "name": "MongoDB", "icon": "mongodb", "color": "#51A649" },
+        { "name": "Redis", "icon": "redis", "color": "#DC382D" },
+        { "name": "MySQL", "icon": "mysql", "color": "#035D85" },
+        { "name": "GraphQL", "icon": "graphql", "color": "#E10098" }
+      ]
+    },
+    {
+      "title": "Frontend & Full-Stack",
+      "summary": "Modern web and mobile application development.",
+      "skills": [
+        { "name": "React", "icon": "react", "color": "#5ED2F3" },
+        { "name": "Next.js", "icon": "nextjs", "color": "#808080" },
+        { "name": "TypeScript", "icon": "typescript", "color": "#2F73BF" },
+        { "name": "JavaScript", "icon": "javascript", "color": "#F7DF1E" },
+        { "name": "Node.js", "icon": "node", "color": "#77B55C" },
+        { "name": "Socket.io", "icon": "socketio", "color": "#a0a0a0" },
+        { "name": "Three.js", "icon": "threejs", "color": "#a0a0a0" }
+      ]
+    },
+    {
+      "title": "DevOps & Cloud",
+      "summary": "Containerisation, orchestration, CI/CD and cloud infrastructure.",
+      "skills": [
+        { "name": "Docker", "icon": "docker", "color": "#2491E5" },
+        { "name": "Kubernetes", "icon": "kubernetes", "color": "#3069DD" },
+        { "name": "AWS", "icon": "aws", "color": "#ff9900" },
+        { "name": "Nginx", "icon": "nginx", "color": "#039137" },
+        { "name": "Firebase", "icon": "firebase", "color": "#F57C00" },
+        { "name": "Git", "icon": "git", "color": "#F05032" },
+        { "name": "Android", "icon": "android", "color": "#31DE83" }
+      ]
+    }
+  ]
+}

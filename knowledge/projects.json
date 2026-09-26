@@ -1,0 +1,130 @@
+{
+  "$comment": "Canonical project list. Rendered by components/Projects and indexed for the chatbot. 'tech' holds plain names - the component maps them to icons via components/Projects/icons.ts. Run 'yarn rag:build' after editing.",
+  "projects": [
+    {
+      "name": "Gamatron — AI App Builder",
+      "desc": "Build apps without code using AI. A no-code platform powered by LLMs that lets you create full applications through natural language prompts.",
+      "demo": "https://ai.socialamigo.in/",
+      "tech": ["Agentic AI", "LangChain", "LangGraph", "MCP", "OpenAI", "Next.js", "TypeScript"],
+      "highlights": [
+        "Natural-language prompt to full application generation",
+        "LLM-powered no-code builder shipped as a live web app"
+      ]
+    },
+    {
+      "name": "Gama AI — RAG Chatbot",
+      "desc": "Agentic RAG chatbot built with LangChain, FAISS vector store, and streaming responses. Uses retrieval-augmented generation to answer questions about my portfolio.",
+      "demo": "/chat",
+      "tech": ["LangChain", "OpenAI", "Next.js", "TypeScript"],
+      "highlights": [
+        "Retrieval-augmented generation over a FAISS vector store",
+        "Token-by-token streaming responses with live status steps",
+        "Multi-source indexing: resume PDF, website content and a knowledge folder",
+        "Per-answer thumbs up/down feedback and usage analytics"
+      ]
+    },
+    {
+      "name": "Multi-Agent Orchestrator",
+      "desc": "LangGraph-based multi-agent system with tool-calling, shared memory, and conditional routing across specialized AI agents.",
+      "isInternalTool": true,
+      "tech": ["LangGraph", "LangChain", "Python", "OpenAI"],
+      "highlights": [
+        "Conditional routing between specialised agents",
+        "Shared memory across agent handoffs",
+        "Function/tool calling with structured outputs"
+      ]
+    },
+    {
+      "name": "MCP Tool Server",
+      "desc": "Model Context Protocol server exposing custom tools for LLM agents — file search, code analysis, and data retrieval via standardized MCP interface.",
+      "isInternalTool": true,
+      "tech": ["Node.js", "TypeScript", "MCP", "OpenAI"],
+      "highlights": [
+        "Implements the Model Context Protocol for tool interoperability",
+        "Tools for file search, code analysis and data retrieval"
+      ]
+    },
+    {
+      "name": "Tesseract OCR + AI",
+      "desc": "Multi-language document OCR pipeline enhanced with LLM post-processing for structured data extraction.",
+      "isInternalTool": true,
+      "tech": ["Node.js", "Python", "TypeScript", "MySQL", "MongoDB"],
+      "highlights": [
+        "Multi-language OCR with Tesseract",
+        "LLM post-processing turns raw OCR text into structured records"
+      ]
+    },
+    {
+      "name": "Teasit PWA",
+      "desc": "Full-featured social media PWA with real-time messaging and AI-assisted content moderation.",
+      "demo": "https://teasit.com",
+      "image": "/teasit.avif",
+      "tech": ["Next.js", "React", "MongoDB", "TypeScript"],
+      "highlights": [
+        "Installable progressive web app",
+        "Realtime messaging plus AI-assisted content moderation"
+      ]
+    },
+    {
+      "name": "Video Editor Service",
+      "desc": "AI-driven server-side video processing pipeline using FFmpeg with automated scene detection.",
+      "isInternalTool": true,
+      "tech": ["Node.js", "FFmpeg"],
+      "highlights": [
+        "Server-side FFmpeg processing pipeline",
+        "Automated scene detection"
+      ]
+    },
+    {
+      "name": "Xpense Wala",
+      "desc": "Personal expense tracker with AI-powered spending insights and category-based budgeting.",
+      "demo": "https://xpense.socialamigo.in",
+      "tech": ["Vite", "React"],
+      "highlights": [
+        "AI-generated spending insights",
+        "Category-based budgeting"
+      ]
+    },
+    {
+      "name": "Hio — AI Chat App",
+      "desc": "Real-time chat app with Socket.io, message history, and LLM-powered smart replies.",
+      "isInternalTool": true,
+      "tech": ["Node.js", "React", "Next.js", "Socket.io"],
+      "highlights": [
+        "Realtime messaging over Socket.io",
+        "LLM-powered smart reply suggestions"
+      ]
+    },
+    {
+      "name": "OkkJi Android App",
+      "desc": "E-commerce customer app with order tracking and push notifications.",
+      "demo": "https://play.google.com/store/apps/details?id=com.okkji.customer&hl=en_IN&gl=US",
+      "tech": ["React Native", "Android"],
+      "highlights": [
+        "Published on Google Play",
+        "Order tracking and push notifications"
+      ]
+    },
+    {
+      "name": "Quick Dial",
+      "desc": "Speed dial app for instant calling your favorite contacts.",
+      "demo": "https://play.google.com/store/apps/details?id=com.quickdialapp&hl=en_US",
+      "tech": ["React Native", "TypeScript"],
+      "highlights": [
+        "Published on Google Play",
+        "One-tap dialling of favourite contacts"
+      ]
+    },
+    {
+      "name": "Resume Builder",
+      "desc": "Drag-and-drop resume builder with multiple templates.",
+      "isInternalTool": true,
+      "demo": "https://easy-resume-builder-web.web.app",
+      "tech": ["Node.js", "React"],
+      "highlights": [
+        "Drag-and-drop editor",
+        "Multiple resume templates"
+      ]
+    }
+  ]
+}

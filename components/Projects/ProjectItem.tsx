@@ -7,12 +7,13 @@ interface ProjectItemProps {
   name: string
   image?: string
   demo?: string
-  tech: IconType[]
+  /** Icons resolved from the tech names in knowledge/projects.json. */
+  techIcons: IconType[]
   isInternalTool?: boolean
   desc?: string
 }
 
-const ProjectItem = ({ name, demo, tech, isInternalTool, desc }: ProjectItemProps) => {
+const ProjectItem = ({ name, demo, techIcons, isInternalTool, desc }: ProjectItemProps) => {
   return (
     <div
       className={styles.projectCard}
@@ -31,7 +32,7 @@ const ProjectItem = ({ name, demo, tech, isInternalTool, desc }: ProjectItemProp
       </div>
       {desc && <p className={styles.projectDesc}>{desc}</p>}
       <div className={styles.projectTech}>
-        {tech.map((Icon, i) => (
+        {techIcons.map((Icon, i) => (
           <Icon size={18} key={i} />
         ))}
       </div>
