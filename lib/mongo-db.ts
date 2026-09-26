@@ -29,6 +29,15 @@ export function isProduction(): boolean {
 /**
  * Resolve the database name.
  *
+ * Precedence: explicit override, then MONGODB_DB_NAME, then a NODE_ENV-based
+ * default.
+ *
+ * The env read uses bracket notation on purpose. Webpack's DefinePlugin
+ * replaces `process.env.MONGODB_DB_NAME` (dot form) with a literal at build
+ * time, which would freeze whatever the value was during `next build` and
+ * ignore whatever Vercel actually injects at runtime. Bracket access is not
+ * substituted, so this stays a real runtime read.
+ *
  * @param override  explicit name, e.g. from the CLI's `--env` flag
  * @param asProd    treat the process as production even if NODE_ENV says
  *                  otherwise (the CLI is run outside a Next.js runtime)
@@ -38,6 +47,10 @@ export function resolveDbName(
   asProd?: boolean
 ): string {
   if (override && override.trim()) return override.trim();
+
+  const fromEnv = process.env["MONGODB_DB_NAME"];
+  if (fromEnv && fromEnv.trim()) return fromEnv.trim();
+
   const production = asProd ?? isProduction();
   return production ? PROD_DB_NAME : DEV_DB_NAME;
 }

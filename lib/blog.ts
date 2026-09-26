@@ -36,11 +36,21 @@ export function getPost(slug: string) {
   const raw = fs.readFileSync(path.join(BLOG_DIR, `${slug}.md`), "utf-8");
   const { data, content } = matter(raw);
 
+  // Front matter is arbitrary YAML, so spell out the fields callers rely on.
+  // Without this the inferred type is just the three literals above and
+  // `post.tags` / `post.image` fail to typecheck at the call site.
   return {
     slug,
     content,
     readTime: readingTime(content),
-    ...data,
+    ...(data as {
+      title?: string;
+      description?: string;
+      date?: string;
+      tags?: string[];
+      image?: string | null;
+      externalUrl?: string;
+    }),
   };
 }
 

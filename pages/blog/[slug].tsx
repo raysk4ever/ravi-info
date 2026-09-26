@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3, FileText, MessageSquare } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -15,6 +15,8 @@ import PostCard, { type BlogPostView } from "@/components/blog/PostCard";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ShareActions from "@/components/blog/ShareActions";
+import Comments from "@/components/blog/Comments";
+import LikeButton from "@/components/blog/LikeButton";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -194,6 +196,11 @@ export default function BlogPost({ post, toc, words, related }: any) {
                 </time>
               </div>
               <div className={style.blogPostReadStats}>
+                <LikeButton slug={post.slug} />
+                <a href="#comments" className={style.commentCountLink}>
+                  <MessageSquare size={13} aria-hidden="true" />
+                  Comments
+                </a>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock3 className="h-3.5 w-3.5" aria-hidden="true" />
                   {post.readTime}
@@ -280,6 +287,9 @@ export default function BlogPost({ post, toc, words, related }: any) {
                   </div>
                 </div>
               </footer>
+
+              {/* Inside the article column so comments align with the prose. */}
+              <Comments slug={post.slug} />
             </div>
 
             {toc.length > 0 && (
