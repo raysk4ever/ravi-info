@@ -11,7 +11,8 @@
     "rag:build": "node scripts/build-rag-index.cjs",
     "rag:check": "node scripts/build-rag-index.cjs --check",
     "rag:force": "node scripts/build-rag-index.cjs --force",
-    "chat:insights": "node scripts/chat-insights.cjs"
+    "chat:insights": "node scripts/chat-insights.cjs",
+    "chat:report": "node scripts/chat-report.cjs --open"
   },
   "dependencies": {
     "@langchain/community": "^0.3.51",

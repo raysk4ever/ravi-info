@@ -38,3 +38,6 @@ next-env.d.ts
 
 # mcp
 .playwright-mcp/*
+
+# generated chat insight reports (artifacts)
+chat-insights-*.html
