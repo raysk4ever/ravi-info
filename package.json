@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "node rss.js && next-sitemap"
+    "postbuild": "node rss.js && next-sitemap",
+    "rag:build": "node scripts/build-rag-index.cjs",
+    "rag:check": "node scripts/build-rag-index.cjs --check",
+    "rag:force": "node scripts/build-rag-index.cjs --force",
+    "chat:insights": "node scripts/chat-insights.cjs"
   },
   "dependencies": {
     "@langchain/community": "^0.3.51",
