@@ -39,6 +39,9 @@ export default async function handler(
       }
     }
     writeEvent(res, { type: "end" });
+    // Headers are already flushed by this point, so the 429 below can never
+    // reach the client. Tell it explicitly so we can record the outcome.
+    writeEvent(res, { type: "rate_limited" });
     return res.status(429).end()
     // return new Response("", { status: 429 });
   }
@@ -77,12 +80,21 @@ export default async function handler(
         writeEvent(res, { type: 'model', name: chunk.__model })
         continue
       }
+      // Retrieval found nothing relevant. The generator replies honestly and
+      // skips the LLM call; this event lets us record the coverage gap.
+      if (typeof chunk === 'object' && chunk.__noContext) {
+        writeEvent(res, { type: 'no_context' })
+        continue
+      }
       writeEvent(res, { type: 'text', delta: chunk })
     }
     writeEvent(res, { type: "end" });
     res.end()
   } catch (err) {
     console.error(err)
+    // Same as above: the real status is unobservable once streaming started,
+    // so flag the failure on the stream itself.
+    writeEvent(res, { type: "error" })
     writeEvent(res, {
       type: "text",
       delta: "😅 My AI brain glitched for a second — the models are having a moment. Please try again in a minute!",

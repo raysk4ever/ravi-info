@@ -5,6 +5,7 @@ import DOMPurify from "dompurify"
 import { useAtom, useSetAtom } from 'jotai';
 import { messagesAtom } from '@/state/atoms';
 import useRaggy from '@/hooks/use-raggy';
+import FeedbackButtons from './FeedbackButtons';
 import { ArrowDown, ArrowLeft, Expand, Star } from 'lucide-react';
 import Link from 'next/link';
 
@@ -12,6 +13,10 @@ const MODEL_DISPLAY_NAMES: Record<string, string> = {
   "@cf/ibm-granite/granite-4.0-h-micro": "IBM Granite 4.0",
   "gemini-2.0-flash": "Gemini 2.0 Flash",
   "llama3.1:8b": "Llama 3.1 8B",
+  "llama3.2:1b": "Llama 3.2 1B",
+  "phi:latest": "Phi-3 Mini (local)",
+  "qwen3:8b": "Qwen 3 8B",
+  "gemma3:4b": "Gemma 3 4B",
 };
 
 // type Message = {
@@ -19,6 +24,8 @@ const MODEL_DISPLAY_NAMES: Record<string, string> = {
 //   message: string;
 //   role: 'user' | 'system'
 // }
+
+export type TextMessage = Extract<Message, { type: 'text' }>
 
 export type Message =
   | {
@@ -29,6 +36,12 @@ export type Message =
       isLoading?: boolean
       statusStep?: string
       modelName?: string
+      /** Links this answer to its analytics record and feedback vote. */
+      turnId?: string
+      /** The question this message answers, used in the feedback payload. */
+      question?: string
+      /** 1 = thumbs up, -1 = thumbs down, 0 = no vote. */
+      feedback?: 1 | -1 | 0
     }
   | {
       id: string
@@ -78,7 +91,7 @@ export default function Raggy({ expanded = false }: { expanded?: boolean }) {
 
   //   return result
   // }
-  const { callRagApi: handleCallRagApi } = useRaggy()
+  const { callRagApi: handleCallRagApi, vote } = useRaggy()
 
   async function callRagApi(question: string) {
     await handleCallRagApi(question)
@@ -87,7 +100,7 @@ export default function Raggy({ expanded = false }: { expanded?: boolean }) {
   return (
     <div id='raggy-container' className={styles.raggyContainer}>
       <RaggyHeader expanded={expanded}/>
-      <Messages messages={messages} />
+      <Messages messages={messages} onVote={vote} />
       <RaggyInput callRagApi={callRagApi} />
     </div>
   )
@@ -127,7 +140,7 @@ function RaggyHeader ({ expanded = false }: { expanded?: boolean }) {
 }
 
 
-function Messages({ messages = [] }: { messages: Message[] }) {
+function Messages({ messages = [], onVote }: { messages?: Message[]; onVote: (turnId: string, rating: 1 | -1 | 0, question: string, answer: string) => void }) {
   const [showGoBottom, setShowGoBottom] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
 
@@ -155,7 +168,9 @@ function Messages({ messages = [] }: { messages: Message[] }) {
   }, [])
 
   const last = messages[messages.length - 1]
-  const lastMsgLen = last?.message?.length ?? 0
+  // `last` can be a resume_card, which has no text - narrow before reading it.
+  const lastText: TextMessage | undefined = last?.type === 'text' ? last : undefined
+  const lastMsgLen = lastText?.message?.length ?? 0
 
   // while a message is streaming / updating: keep pinned to bottom,
   // but only if the user hasn't scrolled up to read older messages
@@ -168,7 +183,7 @@ function Messages({ messages = [] }: { messages: Message[] }) {
     }
     el.scrollTop = el.scrollHeight
     setShowGoBottom(false)
-  }, [last?.id, lastMsgLen, last?.statusStep, messages.length])
+  }, [last?.id, lastMsgLen, lastText?.statusStep, messages.length])
 
   // new message appended (user send / resume card): smooth scroll to bottom
   useEffect(() => {
@@ -189,7 +204,7 @@ function Messages({ messages = [] }: { messages: Message[] }) {
           <h1 className={styles.raggyTitle}>Gama AI 🐸 </h1>
           <h3 className={styles.raggyDesc}>Ask me anything about Ravi!</h3>
         </div>}
-        {messages.map(m => <MessageItem {...m} key={m.id} />)}
+        {messages.map(m => <MessageItem {...m} key={m.id} onVote={onVote} />)}
       </div>
       {showGoBottom && messages.length > 0 && (
         <button
@@ -205,9 +220,20 @@ function Messages({ messages = [] }: { messages: Message[] }) {
   )
 }
 
-function MessageItem({ type, isLoading, payload, message = '', role = 'user', statusStep, modelName }: Message & { modelName?: string }) {
+type VoteHandler = (
+  turnId: string,
+  rating: 1 | -1 | 0,
+  question: string,
+  answer: string
+) => void
+
+// Props stay as the full union so TS can narrow on `type`; destructuring in the
+// signature would collapse the union and lose every variant-specific field.
+function MessageItem(props: Message & { onVote?: VoteHandler }) {
+  const { type, role = 'user' } = props
+
   if (type === 'resume_card') {
-    const { title, description, previewUrl, downloadUrl, fileType, sizeKB } = payload
+    const { title, description, previewUrl, downloadUrl, fileType, sizeKB } = props.payload
     return (
       <div className={`${styles.messageItem} ${styles[role]}`}>
         <div className={styles.resumeCard}>
@@ -221,6 +247,8 @@ function MessageItem({ type, isLoading, payload, message = '', role = 'user', st
       </div>
     )
   }
+
+  const { isLoading, statusStep, modelName, turnId, question, feedback, message = '' } = props
 
   if (isLoading && statusStep) {
     return (
@@ -237,13 +265,22 @@ function MessageItem({ type, isLoading, payload, message = '', role = 'user', st
       {modelName && role === 'system' && !isLoading && (
         <span className={styles.modelBadge}>{MODEL_DISPLAY_NAMES[modelName] || modelName}</span>
       )}
+      {role === 'system' && !isLoading && props.onVote && (
+        <FeedbackButtons
+          turnId={turnId}
+          question={question}
+          answer={message}
+          rating={feedback}
+          onVote={props.onVote}
+        />
+      )}
     </div>
   )
 }
 
 function RaggyInput({ callRagApi }: any) {
   const [input, setInput] = useState('')
-  const handleOnClick = (e) => {
+  const handleOnClick = (e: React.FormEvent) => {
     e.preventDefault()
     if (!input) return
     setInput('')
