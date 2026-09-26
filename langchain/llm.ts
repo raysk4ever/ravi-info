@@ -114,13 +114,45 @@ class CloudflareWorkersAIChat {
   }
 }
 
-export function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { model: 'openai' }) {
-  const isDev = process.env.NODE_ENV === 'development';
-  model = isDev ? 'ollama' : model
-  console.log('using model', model);
+export type LLMChoice = "ollama" | "gemini" | "openai";
+
+/**
+ * Small default for local dev so feedback loops stay fast. `llama3.1:8b` is
+ * ~4.7GB and takes noticeably longer to answer.
+ */
+const DEV_OLLAMA_MODEL = "phi:latest";
+const PROD_OLLAMA_MODEL = "llama3.1:8b";
+
+const isProduction = () => process.env.NODE_ENV === "production";
+
+/**
+ * Ollama is a local-only tool and is NEVER used in production - there is no
+ * Ollama server on Vercel, so honouring the override there would break the
+ * chatbot outright. OLLAMA_MODEL is therefore ignored whenever NODE_ENV is
+ * production, however it happens to be set.
+ */
+function resolveOllamaModel(): string {
+  const override = process.env.OLLAMA_MODEL;
+  if (isProduction()) {
+    if (override) {
+      console.warn(
+        "[llm] OLLAMA_MODEL is ignored in production; using the hosted provider."
+      );
+    }
+    return PROD_OLLAMA_MODEL;
+  }
+  return override || DEV_OLLAMA_MODEL;
+}
+
+export function getLLM({ model }: { model?: LLMChoice } = {}) {
+  // Dev always talks to local Ollama. Production always uses the hosted
+  // provider, so this branch is unreachable on Vercel.
+  const choice: LLMChoice = isProduction() ? model ?? "openai" : "ollama";
+
+  console.log("using model", choice);
   const temperature = 0.5;
 
-  if (model === 'openai') {
+  if (choice === "openai") {
     const modelName = CLOUDFLARE_MODEL;
     return {
       llm: new CloudflareWorkersAIChat(
@@ -131,7 +163,7 @@ export function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { 
       modelName,
     };
 
-  } else if (model === 'gemini') {
+  } else if (choice === 'gemini') {
     const modelName = "gemini-2.0-flash";
     return {
       llm: new ChatGoogleGenerativeAI({
@@ -143,7 +175,7 @@ export function getLLM({ model }: { model: 'ollama' | 'gemini' | 'openai' } = { 
     };
   }
 
-  const modelName = "llama3.1:8b";
+  const modelName = resolveOllamaModel();
   return {
     llm: new Ollama({
       baseUrl: process.env.LLM_URL || 'http://localhost:11434',
