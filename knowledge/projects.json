@@ -4,7 +4,7 @@
     {
       "name": "Gamatron — AI App Builder",
       "desc": "Build apps without code using AI. A no-code platform powered by LLMs that lets you create full applications through natural language prompts.",
-      "demo": "https://ai.socialamigo.in/",
+      "demo": "https://gamatron.in/",
       "tech": ["Agentic AI", "LangChain", "LangGraph", "MCP", "OpenAI", "Next.js", "TypeScript"],
       "highlights": [
         "Natural-language prompt to full application generation",
