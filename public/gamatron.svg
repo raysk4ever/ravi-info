@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512" role="img" aria-label="Gamatron">
+  <title>Gamatron</title>
+  <rect width="64" height="64" rx="14" fill="#f97316"/>
+  <path d="M36.5 8L18 34h11l-3 22L46 30H35l1.5-22z" fill="#fff" stroke="#fff" stroke-width="1" stroke-linejoin="round"/>
+</svg>
