@@ -777,6 +777,20 @@
   justify-content: space-between;
 }
 
+.projectHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.projectImage {
+  width: 30px;
+  height: 28px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
 .projectName {
   font-size: 1.05rem;
   font-weight: 700;

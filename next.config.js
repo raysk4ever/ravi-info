@@ -15,6 +15,12 @@ const nextConfig = {
     config.cache = false;
     return config;
   },
+  async redirects() {
+    return [
+      { source: '/tags/nextjs', destination: '/tags/Next.js', permanent: true },
+      { source: '/tags/nodejs', destination: '/tags/Node.js', permanent: true },
+    ]
+  },
   async headers() {
     return [
       {

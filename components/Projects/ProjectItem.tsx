@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { IconType } from 'react-icons/lib'
 import styles from '@/styles/Home.module.css'
 import { HiExternalLink } from 'react-icons/hi'
@@ -13,7 +14,7 @@ interface ProjectItemProps {
   desc?: string
 }
 
-const ProjectItem = ({ name, demo, techIcons, isInternalTool, desc }: ProjectItemProps) => {
+const ProjectItem = ({ name, image, demo, techIcons, isInternalTool, desc }: ProjectItemProps) => {
   return (
     <div
       className={styles.projectCard}
@@ -22,7 +23,10 @@ const ProjectItem = ({ name, demo, techIcons, isInternalTool, desc }: ProjectIte
       style={{ cursor: demo ? 'pointer' : 'default' }}
     >
       <div className={styles.projectCardTop}>
-        <h3 className={styles.projectName}>{name}</h3>
+        <div className={styles.projectHeading}>
+          {image && <Image className={styles.projectImage} src={image} alt="" width={30} height={28} unoptimized />}
+          <h3 className={styles.projectName}>{name}</h3>
+        </div>
         {isInternalTool && (
           <span className={styles.projectBadge}>Internal</span>
         )}

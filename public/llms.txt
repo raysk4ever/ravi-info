@@ -9,6 +9,7 @@
 
 ## Key articles
 
+- [Gamatron AI App Builder: Ship an App in Plain English](https://www.socialamigo.in/blog/gamatron-ai-app-builder-plain-english): A five-step walkthrough of the free AI app builder, from plain English prompt to live preview.
 - [RAG vs Fine-Tuning: How to Choose the Right Approach](https://www.socialamigo.in/blog/rag-vs-fine-tuning): When retrieval beats training — cost, latency, accuracy, and a combined strategy.
 - [LangChain vs LlamaIndex: Which RAG Framework in 2026?](https://www.socialamigo.in/blog/langchain-vs-llamaindex): Framework comparison table and decision guidance for RAG apps.
 - [API Rate Limiting with Redis: A Practical Guide](https://www.socialamigo.in/blog/api-rate-limiting-redis): Token buckets, sliding windows, 429 handling, and where to enforce limits.

@@ -2,7 +2,7 @@
 title: "Structured Logging for Next.js API Routes with Pino"
 description: "Replace console.log with structured logs in Next.js API routes using Pino — request IDs, latency, status codes, and safe fields you can actually query in production."
 date: '2026-10-19'
-tags: ["nextjs", "logging", "pino", "observability", "nodejs"]
+tags: ["Next.js", "logging", "pino", "observability", "Node.js"]
 image: "/blog-images/structured-logging-nextjs-pino.jpg"
 type: "blog"
 ---
