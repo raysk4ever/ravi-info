@@ -79,10 +79,19 @@ export async function getStaticProps({ params }: any) {
       url: `/blog/${p.slug}`,
     }));
 
-  return { props: { post, toc, words, related } };
+  return {
+    props: {
+      post,
+      toc,
+      words,
+      related,
+      imageWidth: post.imageWidth,
+      imageHeight: post.imageHeight,
+    },
+  };
 }
 
-export default function BlogPost({ post, toc, words, related }: any) {
+export default function BlogPost({ post, toc, words, related, imageWidth, imageHeight }: any) {
   useScrollReveal();
 
   const url = `${SITE_URL}/blog/${post.slug}`;
@@ -90,9 +99,44 @@ export default function BlogPost({ post, toc, words, related }: any) {
     ? post.image.startsWith("http")
       ? post.image
       : `${SITE_URL}${post.image}`
-    : `${SITE_URL}/ravi.png`;
+    : null;
   const keywords = Array.isArray(post.tags) ? post.tags.join(", ") : post.tags;
   const published = new Date(post.date).toISOString();
+  const modifiedValue = post.dateModified || post.updatedAt || post.date;
+  const modified = new Date(modifiedValue).toISOString();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: published,
+    dateModified: modified,
+    ...(image ? { image: [image] } : {}),
+    keywords,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: {
+      "@type": "Person",
+      name: "Ravi Singh",
+      url: "https://www.linkedin.com/in/ravi-ksingh/",
+      sameAs: [
+        "https://www.linkedin.com/in/ravi-ksingh/",
+        "https://github.com/raysk4ever",
+        "https://x.com/raysk4ever",
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ravi Singh",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/cloud.png` },
+    },
+  };
+  const serializedJsonLd = JSON.stringify(jsonLd)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 
   return (
     <>
@@ -111,46 +155,21 @@ export default function BlogPost({ post, toc, words, related }: any) {
         <meta property="og:description" content={post.description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url} />
-        <meta property="og:image" content={image} />
+        {image && <meta property="og:image" content={image} />}
+        {image && imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+        {image && imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
         <meta property="og:site_name" content="Ravi Singh — AI Engineer" />
         <meta property="article:published_time" content={published} />
+        <meta property="article:modified_time" content={modified} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={image} />
+        {image && <meta name="twitter:image" content={image} />}
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              headline: post.title,
-              description: post.description,
-              datePublished: published,
-              dateModified: published,
-              image: image,
-              keywords: keywords,
-              mainEntityOfPage: { "@type": "WebPage", "@id": url },
-              author: {
-                "@type": "Person",
-                name: "Ravi Singh",
-                url: "https://www.linkedin.com/in/ravi-ksingh/",
-                sameAs: [
-                  "https://www.linkedin.com/in/ravi-ksingh/",
-                  "https://github.com/raysk4ever",
-                  "https://x.com/raysk4ever",
-                ],
-              },
-              publisher: {
-                "@type": "Organization",
-                name: "Ravi Singh",
-                url: SITE_URL,
-                logo: { "@type": "ImageObject", url: `${SITE_URL}/cloud.png` },
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
         />
       </Head>
 
@@ -219,7 +238,14 @@ export default function BlogPost({ post, toc, words, related }: any) {
           {post.image && (
             <div className={`${style.blogPostHero} reveal`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={post.image} alt={post.title} className={style.blogPostHeroImg} />
+              <img
+                src={post.image}
+                alt={post.title}
+                width={imageWidth}
+                height={imageHeight}
+                fetchPriority="high"
+                className={style.blogPostHeroImg}
+              />
             </div>
           )}
 

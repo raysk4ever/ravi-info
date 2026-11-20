@@ -70,17 +70,13 @@ module.exports = {
   changefreq: "daily",
   priority: 0.7,
   sitemapSize: 5000,
+  autoLastmod: false,
   exclude: ["/admin/*", "/login", "/register", "/api/*", "/privacy-policy", "/blog/external/*"],
 
   additionalPaths: async (config) => {
     const paths = [
       await config.transform(config, '/'),
       await config.transform(config, '/blog'),
-      await config.transform(config, 'https://budget.socialamigo.in'),
-      await config.transform(config, 'https://base64.socialamigo.in'),
-      await config.transform(config, 'https://xpense.socialamigo.in'),
-      await config.transform(config, 'https://gama.socialamigo.in/'),
-      await config.transform(config, 'https://ai.socialamigo.in/'),
     ];
 
     // Local blog posts
@@ -93,22 +89,27 @@ module.exports = {
         const slug = file.replace(".md", "");
         const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
         const { data } = matter(raw);
+        if (data.draft === true || data.published === false) return;
 
         paths.push({
           loc: `/blog/${slug}`,
           changefreq: "weekly",
           priority: 0.7,
-          lastmod: data.date ? new Date(data.date).toISOString() : undefined,
+          lastmod: data.dateModified || data.updatedAt || data.date
+            ? new Date(data.dateModified || data.updatedAt || data.date).toISOString()
+            : undefined,
         });
 
         // Tag pages (only tags that exist on a post)
         if (Array.isArray(data.tags)) {
           data.tags.forEach((tag) => {
             paths.push({
-              loc: `/tags/${tag}`,
+              loc: `/tags/${encodeURIComponent(tag)}`,
               changefreq: "weekly",
               priority: 0.5,
-              lastmod: data.date ? new Date(data.date).toISOString() : undefined,
+              lastmod: data.dateModified || data.updatedAt || data.date
+                ? new Date(data.dateModified || data.updatedAt || data.date).toISOString()
+                : undefined,
             });
           });
         }

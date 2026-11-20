@@ -35,6 +35,10 @@ export default function Blog({ entries, featured, tags }: any) {
           name="description"
           content="In-depth technical articles on Agentic AI, RAG pipelines, LangChain, LLMs, Linux, React, Node.js and full-stack engineering, written by Ravi Singh."
         />
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large"
+        />
         <link rel="canonical" href="https://www.socialamigo.in/blog" />
 
         <meta property="og:title" content="AI, RAG & Full-Stack Blog | Ravi Singh" />
@@ -45,12 +49,24 @@ export default function Blog({ entries, featured, tags }: any) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.socialamigo.in/blog" />
         <meta property="og:site_name" content="Ravi Singh — AI Engineer" />
+        {featured?.image && (
+          <meta
+            property="og:image"
+            content={`https://www.socialamigo.in${featured.image.startsWith("/") ? featured.image : `/${featured.image}`}`}
+          />
+        )}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI, RAG & Full-Stack Blog | Ravi Singh" />
         <meta
           name="twitter:description"
           content="In-depth technical articles on Agentic AI, RAG pipelines, LangChain, LLMs and full-stack engineering."
         />
+        {featured?.image && (
+          <meta
+            name="twitter:image"
+            content={`https://www.socialamigo.in${featured.image.startsWith("/") ? featured.image : `/${featured.image}`}`}
+          />
+        )}
       </Head>
 
       <main className={style.blogPage}>
