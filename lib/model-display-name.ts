@@ -1,5 +1,5 @@
 const MODEL_DISPLAY_NAMES: Record<string, string> = {
-  "@cf/ibm-granite/granite-4.0-h-micro": "IBM Granite 4.0",
+  "@cf/ibm-granite/granite-4.0-h-micro": "Granite 4.0",
   "gemini-2.0-flash": "Gemini 2.0 Flash",
   "llama3.1:8b": "Llama 3.1 8B",
   "llama3.2:1b": "Llama 3.2 1B",
