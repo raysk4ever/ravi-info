@@ -263,12 +263,34 @@
 }
 
 .modelBadge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   margin-top: 0.4rem;
   font-size: 0.65rem;
   color: rgba(var(--foreground-rgb), 0.4);
   font-family: var(--font-mono);
   letter-spacing: 0.02em;
+}
+
+.modelLogo {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+  opacity: 0.8;
+}
+
+.ibmLogo {
+  width: 1.875rem;
+  height: auto;
+}
+
+.ollamaLogo {
+  filter: opacity(0.65);
+}
+
+html[data-theme='dark'] .ollamaLogo {
+  filter: invert(1) opacity(0.75);
 }
 
 /* ── Feedback row ── */
@@ -693,4 +715,3 @@ html[data-theme="dark"] .inputContainer button {
   color: #ffffff;
   border: 1px solid rgba(150, 180, 255, 0.35);
 }
-

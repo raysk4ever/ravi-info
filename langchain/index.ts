@@ -2,6 +2,7 @@ import { configDotenv } from 'dotenv'
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import { getLLM } from './llm';
 import { getVectorStore, getRelevanceThreshold, getIndexMeta } from './vector-store';
+import { getModelDisplayName } from '@/lib/model-display-name';
 
 configDotenv()
 
@@ -25,16 +26,25 @@ const SOURCE_LABEL: Record<string, string> = {
   note: 'notes',
 };
 
+function asksWhichModel(question: string): boolean {
+  return /\b(?:what|which)\s+(?:AI\s+)?(?:model|LLM)\s+(?:are you|do you|is this|powers?|runs?)\b|\b(?:are you|is this chat)\s+(?:running|powered)\s+(?:on|by)\b/i.test(question);
+}
+
 export async function* runRag({ question = '', onStatus }: { question: string; onStatus?: (step: string) => void }) {
 
   onStatus?.('loading_model')
-  const vectorStore = await getVectorStore()
   const { llm, modelName } = getLLM()
   console.log('Using LLM:', modelName);
 
   // Yield model info as first value
   yield { __model: modelName };
 
+  if (asksWhichModel(question)) {
+    yield `This chat is powered by ${getModelDisplayName(modelName)}.`;
+    return;
+  }
+
+  const vectorStore = await getVectorStore()
   onStatus?.('searching')
   console.log('Performing similarity search...');
   const candidates = await vectorStore.similaritySearchWithScore(question, CANDIDATES);

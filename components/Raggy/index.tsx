@@ -8,15 +8,22 @@ import useRaggy from '@/hooks/use-raggy';
 import FeedbackButtons from './FeedbackButtons';
 import { ArrowDown, ArrowLeft, Expand, Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { getModelDisplayName } from '@/lib/model-display-name';
 
-const MODEL_DISPLAY_NAMES: Record<string, string> = {
-  "@cf/ibm-granite/granite-4.0-h-micro": "IBM Granite 4.0",
-  "gemini-2.0-flash": "Gemini 2.0 Flash",
-  "llama3.1:8b": "Llama 3.1 8B",
-  "llama3.2:1b": "Llama 3.2 1B",
-  "phi:latest": "Phi-3 Mini (local)",
-  "qwen3:8b": "Qwen 3 8B",
-  "gemma3:4b": "Gemma 3 4B",
+const MODEL_LOGOS: Record<string, { src: string; width: number; height: number; className?: string }> = {
+  "@cf/ibm-granite/granite-4.0-h-micro": {
+    src: "/model-logos/ibm.svg",
+    width: 30,
+    height: 12,
+    className: styles.ibmLogo,
+  },
+  "gemini-2.0-flash": { src: "/model-logos/gemini.svg", width: 12, height: 12 },
+  "llama3.1:8b": { src: "/model-logos/ollama.svg", width: 12, height: 12, className: styles.ollamaLogo },
+  "llama3.2:1b": { src: "/model-logos/ollama.svg", width: 12, height: 12, className: styles.ollamaLogo },
+  "phi:latest": { src: "/model-logos/ollama.svg", width: 12, height: 12, className: styles.ollamaLogo },
+  "qwen3:8b": { src: "/model-logos/ollama.svg", width: 12, height: 12, className: styles.ollamaLogo },
+  "gemma3:4b": { src: "/model-logos/ollama.svg", width: 12, height: 12, className: styles.ollamaLogo },
 };
 
 // type Message = {
@@ -259,11 +266,25 @@ function MessageItem(props: Message & { onVote?: VoteHandler }) {
   }
 
   const html = marked.parse(message) as string
+  const modelLogo = modelName ? MODEL_LOGOS[modelName] : undefined
   return (
     <div className={`${styles.messageItem} ${styles[role]} ${isLoading ? styles.loading : ''}`}>
       <div dangerouslySetInnerHTML={{ __html: DOMPurify?.sanitize(html) }} />
       {modelName && role === 'system' && !isLoading && (
-        <span className={styles.modelBadge}>{MODEL_DISPLAY_NAMES[modelName] || modelName}</span>
+        <span className={styles.modelBadge}>
+          {modelLogo && (
+            <Image
+              src={modelLogo.src}
+              alt=""
+              width={modelLogo.width}
+              height={modelLogo.height}
+              className={`${styles.modelLogo} ${modelLogo.className ?? ''}`}
+              aria-hidden="true"
+              unoptimized
+            />
+          )}
+          {getModelDisplayName(modelName)}
+        </span>
       )}
       {role === 'system' && !isLoading && props.onVote && (
         <FeedbackButtons
