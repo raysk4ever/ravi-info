@@ -112,7 +112,7 @@ export default function Blog({ entries, featured, tags }: any) {
             aria-label="Browse posts by topic"
           >
             {tags.map((tag: string) => (
-              <Link key={tag} href={`/tags/${tag}`} className={style.blogCategoryChip}>
+              <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`} className={style.blogCategoryChip}>
                 #{tag}
               </Link>
             ))}

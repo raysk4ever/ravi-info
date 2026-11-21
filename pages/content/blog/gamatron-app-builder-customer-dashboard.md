@@ -66,7 +66,7 @@ One dashboard is a few generations in the App Builder, and the free plan include
 
 ## How Is This Different From Hand-Building the Dashboard?
 
-Hand-building a customer dashboard means writing the component tree, the styling and the data fetching code yourself, and fixing the bugs when nothing renders. Gamatron's [App Builder](https://gamatron.in/ai-app-builder) does the same work as plain English. Compare the two paths:
+Hand-building a customer dashboard means writing the component tree, the styling and the data fetching code yourself, and fixing the bugs when nothing renders. Gamatron's [App Builder](https://gamatron.in/ai-app-builder) does the same work as plain English:
 
 | Step | Gamatron's [App Builder](https://gamatron.in/ai-app-builder) | Hand-built dashboard |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ Hand-building a customer dashboard means writing the component tree, the styling
 
 ### Is the App Builder free?
 
-Yes. The free plan starts with 50 Sparks every month, and the App Builder is included. [Pro](https://gamatron.in/pricing) costs ₹299 ($4) a month and gives 1,000 Sparks with multi-file projects and session history; [Ultra](https://gamatron.in/pricing) is ₹1,499 ($19) for 5,000 Sparks. You can start on the free plan without a credit card, and you keep the App Builder with live preview, Resume Builder, RAG Studio access and up to 5 saved apps.
+Yes. The free plan starts with 50 Sparks every month, and the App Builder is included. [Pro](https://gamatron.in/pricing) is ₹299 ($4) a month for 1,000 Sparks, multi-file projects and session history; [Ultra](https://gamatron.in/pricing) is ₹1,499 ($19) for 5,000 Sparks. Free to start, no credit card; you get live preview, the Resume Builder, RAG Studio access and up to 5 saved apps.
 
 ### How do I describe a customer dashboard to the App Builder?
 

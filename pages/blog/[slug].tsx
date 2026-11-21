@@ -267,7 +267,7 @@ export default function BlogPost({ post, toc, words, related, imageWidth, imageH
                 <div className="flex flex-wrap items-center gap-2">
                   {Array.isArray(post.tags) &&
                     post.tags.map((tag: string) => (
-                      <Link key={tag} href={`/tags/${tag}`}>
+                      <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
                         <Badge variant="outline" className="hover:border-accent hover:text-foreground transition-colors">
                           #{tag}
                         </Badge>
