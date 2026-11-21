@@ -123,7 +123,7 @@ export type LLMChoice = "ollama" | "gemini" | "openai";
 const DEV_OLLAMA_MODEL = "phi:latest";
 const PROD_OLLAMA_MODEL = "llama3.1:8b";
 
-const isProduction = () => process.env.NODE_ENV !== "production";
+const isProduction = () => process.env.NODE_ENV === "production";
 
 /**
  * Ollama is a local-only tool and is NEVER used in production - there is no
